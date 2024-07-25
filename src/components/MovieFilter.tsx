@@ -24,7 +24,7 @@ const MovieFilter = () => {
         }}
       >
         <Heading
-          fontSize="1xl"
+          fontSize="2xl"
           marginTop={8}
           marginBottom={2}
           textAlign={"center"}

@@ -12,7 +12,7 @@ const useDiscoverMovies = () => {
       params: {
         includes_adult: movieQuery.includeAdult,
         primary_release_year: movieQuery.primaryReleaseYear,
-        query: movieQuery.searchText,
+        with_genres: movieQuery.genreId,
         page: pageParam
       }
     })

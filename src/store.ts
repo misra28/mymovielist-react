@@ -4,6 +4,7 @@ interface MovieQuery {
     searchText?: string;
     primaryReleaseYear?: number;
     includeAdult?: boolean;
+    genreId?: number;
 }
 
 interface MovieQueryStore {
@@ -11,13 +12,15 @@ interface MovieQueryStore {
     setSearchText: (searchText?: string) => void;
     setPrimaryReleaseYear: (primaryReleaseYear?: number) => void;
     setIncludeAdult: (includeAdult?: boolean) => void;
+    setGenreId: (genreId?: number) => void;
 }
 
 const useMovieQueryStore = create<MovieQueryStore>( set => ({
     movieQuery: {},
     setSearchText: (searchText) => set((store) => ({movieQuery: {...store.movieQuery, searchText}})),
     setPrimaryReleaseYear: (primaryReleaseYear) => set(store => ({movieQuery: {...store.movieQuery, primaryReleaseYear}})),
-    setIncludeAdult: (includeAdult) => set(store => ({movieQuery: {...store.movieQuery, includeAdult}}))
+    setIncludeAdult: (includeAdult) => set(store => ({movieQuery: {...store.movieQuery, includeAdult}})),
+    setGenreId: (genreId) => set(store => ({movieQuery: {...store.movieQuery, genreId}}))
 }))
 
 export default useMovieQueryStore;

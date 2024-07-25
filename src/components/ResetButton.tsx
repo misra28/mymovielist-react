@@ -2,7 +2,8 @@ import { Button } from "@chakra-ui/react";
 import useMovieQueryStore from "../store";
 
 const ResetButton = () => {
-  const { setPrimaryReleaseYear, setSearchText } = useMovieQueryStore();
+  const { setPrimaryReleaseYear, setSearchText, setGenreId } =
+    useMovieQueryStore();
 
   return (
     <Button
@@ -10,6 +11,7 @@ const ResetButton = () => {
       onClick={() => {
         setSearchText("");
         setPrimaryReleaseYear();
+        setGenreId();
       }}
       type="reset"
     >

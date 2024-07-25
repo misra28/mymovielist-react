@@ -1,6 +1,7 @@
 import axios, { Axios, AxiosRequestConfig } from 'axios';
 import Poster from '../entities/Poster';
 import Person from '../entities/Person';
+import Genre from '../entities/Genre';
 
 const axiosInstance = axios.create({
     baseURL: 'https://api.themoviedb.org/3',
@@ -25,6 +26,10 @@ export interface FetchCredits {
     crew: Person[];
 }
 
+export interface FetchGenres {
+    genres: Genre[];
+}
+
 class APIClient<T> {
     endpoint: string;
     constructor(endpoint: string) {
@@ -45,6 +50,10 @@ class APIClient<T> {
 
     getCredits = (config: AxiosRequestConfig) => {
         return axiosInstance.get<FetchCredits>(this.endpoint, config).then(res => res.data);
+    }
+
+    getGenres = (config: AxiosRequestConfig) => {
+        return axiosInstance.get<FetchGenres>(this.endpoint, config).then(res => res.data);
     }
 }
 

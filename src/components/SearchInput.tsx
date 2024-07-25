@@ -15,6 +15,7 @@ const SearchInput = () => {
   const ref = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
   const setSearchText = useMovieQueryStore((s) => s.setSearchText);
+  const searchText = useMovieQueryStore((s) => s.movieQuery.searchText);
 
   const submitSearch = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -23,6 +24,8 @@ const SearchInput = () => {
       navigate("/movies");
     }
   };
+
+  if (!searchText && ref.current) ref.current.value = "";
 
   return (
     <form onSubmit={submitSearch}>
