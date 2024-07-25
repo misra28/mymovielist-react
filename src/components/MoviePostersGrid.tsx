@@ -1,6 +1,6 @@
 import { SimpleGrid, Image } from "@chakra-ui/react";
 import useMoviePosters from "../hooks/useMoviePosters";
-import getBackdrop from "../services/backdrop-url";
+import getImage from "../services/backdrop-url";
 
 interface Props {
   movie_id: string;
@@ -23,7 +23,7 @@ const MoviePostersGrid = ({ movie_id, movie_language }: Props) => {
         .filter(
           (file) => file.iso_639_1 === "en" || file.iso_639_1 === movie_language
         )
-        .map((file) => <Image src={getBackdrop(file.file_path)} />)
+        .map((file) => <Image src={getImage(file.file_path)} />)
         .slice(0, 8)}
     </SimpleGrid>
   );

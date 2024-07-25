@@ -9,7 +9,7 @@ import {
   Button,
 } from "@chakra-ui/react";
 import useMovieCredits from "../hooks/useMovieCredits";
-import getBackdrop from "../services/backdrop-url";
+import getImage from "../services/backdrop-url";
 import React, { useState } from "react";
 import noPerson from "../assets/no-person-image.png";
 import BuildMovieCredits from "./BuildMovieCredits";

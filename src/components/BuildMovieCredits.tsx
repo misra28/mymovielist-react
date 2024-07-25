@@ -10,7 +10,7 @@ import {
   SimpleGrid,
   Text,
 } from "@chakra-ui/react";
-import getBackdrop from "../services/backdrop-url";
+import getImage from "../services/backdrop-url";
 import noPerson from "../assets/no-person-image.png";
 
 interface Props {
@@ -28,9 +28,7 @@ const BuildMovieCredits = ({ people, type }: Props) => {
       <React.Fragment>
         <div className="box">
           <Image
-            src={
-              person.profile_path ? getBackdrop(person.profile_path) : noPerson
-            }
+            src={person.profile_path ? getImage(person.profile_path) : noPerson}
             background={"white"}
             borderRadius={"11px"}
           />

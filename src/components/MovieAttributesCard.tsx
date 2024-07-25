@@ -4,7 +4,7 @@ import Movie from "../entities/Movie";
 import minutesToHours from "../services/minutes-to-hours";
 import React from "react";
 import formatReleaseDate from "../services/date-conversion";
-import getBackdrop from "../services/backdrop-url";
+import getImage from "../services/backdrop-url";
 
 interface Props {
   movie: Movie;

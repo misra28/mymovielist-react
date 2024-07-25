@@ -1,6 +1,6 @@
 import { Card, CardBody, Heading, Image } from "@chakra-ui/react";
 import Movie from "../entities/Movie";
-import getBackdrop from "../services/backdrop-url";
+import getImage from "../services/backdrop-url";
 import getCroppedImageUrl from "../services/image-url";
 import { Link } from "react-router-dom";
 
@@ -13,11 +13,7 @@ const MovieCard = ({ movie }: Props) => {
     <Card>
       <Link to={`${movie.id}`}>
         <Image
-          src={
-            movie.backdrop_path
-              ? getBackdrop(movie.backdrop_path)
-              : getBackdrop()
-          }
+          src={movie.backdrop_path ? getImage(movie.backdrop_path) : getImage()}
         />
         <CardBody>
           <Heading fontSize="2xl" fontWeight={"bold"}>
