@@ -1,4 +1,13 @@
-import { Box, Flex, Grid, GridItem, Show, SimpleGrid } from "@chakra-ui/react";
+import {
+  Box,
+  Card,
+  CardBody,
+  Flex,
+  Grid,
+  GridItem,
+  Show,
+  SimpleGrid,
+} from "@chakra-ui/react";
 import MovieGrid from "../components/MovieGrid";
 import MovieFilter from "../components/MovieFilter";
 import MovieHeader from "../components/MovieHeader";
@@ -11,26 +20,34 @@ const HomePage = () => {
         templateAreas={{ base: `"main"`, lg: `"aside main"` }}
         templateColumns={{
           base: "1fr",
-          lg: "200px 1fr",
+          lg: "225px 1fr",
         }}
       >
         <Show above="lg">
           <GridItem area="aside" paddingX={5}>
-            <MovieFilter />
-            <GenreList />
+            <Card>
+              <CardBody>
+                <MovieFilter />
+                <GenreList />
+              </CardBody>
+            </Card>
           </GridItem>
         </Show>
         <GridItem area="main">
-          <Box paddingLeft={2}>
-            <MovieHeader />
-            {/* <Flex marginBottom={5}>
+          <Card>
+            <CardBody>
+              <Box paddingLeft={2}>
+                <MovieHeader />
+                {/* <Flex marginBottom={5}>
               <Box marginRight={5}>
-                <PlatformSelector />
-                <SortSelector />
+              <PlatformSelector />
+              <SortSelector />
               </Box>
-            </Flex> */}
-          </Box>
-          <MovieGrid />
+              </Flex> */}
+              </Box>
+              <MovieGrid />
+            </CardBody>
+          </Card>
         </GridItem>
       </Grid>
     </>

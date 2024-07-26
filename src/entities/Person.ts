@@ -5,4 +5,9 @@ export default interface Person {
     profile_path?: string;
     known_for_department?: string;
     job?: string;
+    biography?: string;
+    birthday?: string;
+    deathday?: string;
+    place_of_birth?: string;
+    also_known_as?: string[];
 }

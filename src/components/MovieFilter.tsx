@@ -23,12 +23,7 @@ const MovieFilter = () => {
           }
         }}
       >
-        <Heading
-          fontSize="2xl"
-          marginTop={8}
-          marginBottom={2}
-          textAlign={"center"}
-        >
+        <Heading fontSize="2xl" marginBottom={2} textAlign={"center"}>
           Release Year
         </Heading>
         <InputGroup>
@@ -38,6 +33,7 @@ const MovieFilter = () => {
             borderRadius={20}
             placeholder="Enter a year..."
             variant="filled"
+            bgColor="#121212"
           />
         </InputGroup>
       </form>

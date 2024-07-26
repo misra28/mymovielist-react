@@ -12,6 +12,10 @@ export default interface Movie {
     poster_path?: string;
     release_date?: string;
     original_language?: string;
+    vote_average?: number;
+    popularity?: number;
+    job?: string;
+    character?: string;
     genres?: Genre[];
     production_companies?: Company[];
 }

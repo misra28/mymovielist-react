@@ -4,7 +4,6 @@ import Movie from "../entities/Movie";
 import minutesToHours from "../services/minutes-to-hours";
 import React from "react";
 import formatReleaseDate from "../services/date-conversion";
-import getImage from "../services/backdrop-url";
 
 interface Props {
   movie: Movie;
@@ -34,7 +33,6 @@ const MovieAttributesCard = ({ movie }: Props) => {
               {movie.production_companies!.map((company) => (
                 <Text key={company.id}>{company.name}</Text>
               ))}
-              {/* <Image src={getBackdrop(company.logo_path)}></Image> */}
             </React.Fragment>
           </DefinitionItem>
         </SimpleGrid>

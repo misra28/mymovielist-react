@@ -12,6 +12,7 @@ import {
 } from "@chakra-ui/react";
 import getImage from "../services/backdrop-url";
 import noPerson from "../assets/no-person-image.png";
+import { Link } from "react-router-dom";
 
 interface Props {
   people: Person[];
@@ -27,15 +28,24 @@ const BuildMovieCredits = ({ people, type }: Props) => {
     .map((person) => (
       <React.Fragment>
         <div className="box">
-          <Image
-            src={person.profile_path ? getImage(person.profile_path) : noPerson}
-            background={"white"}
-            borderRadius={"11px"}
-          />
-          <Text>{person.name}</Text>
-          <Text color={"gray"}>
-            {type === "cast" ? person.character : person.job}
-          </Text>
+          <Link to={`/people/${person.id}`}>
+            <Image
+              key={
+                person.job && person.known_for_department
+                  ? person.id + person.job + person.known_for_department
+                  : person.id
+              }
+              src={
+                person.profile_path ? getImage(person.profile_path) : noPerson
+              }
+              background={"white"}
+              borderRadius={"11px"}
+            />
+            <Text>{person.name}</Text>
+            <Text color={"gray"}>
+              {type === "cast" ? person.character : person.job}
+            </Text>
+          </Link>
         </div>
       </React.Fragment>
     ));

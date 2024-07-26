@@ -12,7 +12,7 @@ const NavBar = () => {
       </Link>
       <Heading padding="10px">MyMovieList</Heading>
       <SearchInput />
-      <ColorModeSwitch />
+      {/* <ColorModeSwitch /> */}
     </HStack>
   );
 };

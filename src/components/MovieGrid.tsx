@@ -1,4 +1,4 @@
-import { GridItem, SimpleGrid, Text } from "@chakra-ui/react";
+import { SimpleGrid, Text } from "@chakra-ui/react";
 import React from "react";
 import useSearchMovies from "../hooks/useSearchMovies";
 import MovieCardSkeleton from "./MovieCardSkeleton";
@@ -13,10 +13,9 @@ const MovieGrid = () => {
   const useMovies = searchText ? useSearchMovies : useDiscoverMovies;
 
   const {
-    data,
+    data: movies,
     error,
     isLoading,
-    isFetchingNextPage,
     fetchNextPage,
     hasNextPage,
   } = useMovies();
@@ -26,7 +25,7 @@ const MovieGrid = () => {
   if (error) return <Text>{error.message}</Text>;
 
   const fetchedMoviesCount =
-    data?.pages.reduce((total, page) => total + page.results.length, 0) || 0;
+    movies?.pages.reduce((total, page) => total + page.results.length, 0) || 0;
 
   return (
     <InfiniteScroll
@@ -46,7 +45,7 @@ const MovieGrid = () => {
               <MovieCardSkeleton />
             </MovieCardContainer>
           ))}
-        {data?.pages.map((page, index) => (
+        {movies?.pages.map((page, index) => (
           <React.Fragment key={index}>
             {page.results.map((movie) => (
               <MovieCardContainer key={movie.id}>

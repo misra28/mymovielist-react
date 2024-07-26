@@ -4,7 +4,7 @@ const minutesToHours = (minutes: number) => {
     const hours = Math.floor(minutes / 60);
     const plural = hours === 1 ? '' : 's';
     const remainder = minutes % 60;
-    const plural2 = minutes === 1 ? '' : 's';
+    const plural2 = remainder === 1 ? '' : 's';
     return `${hours} hour${plural}, ${remainder} minute${plural2}`;
 }
 
