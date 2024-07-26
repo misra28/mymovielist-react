@@ -4,14 +4,12 @@ import {
   CardHeader,
   Heading,
   SimpleGrid,
-  Spinner,
 } from "@chakra-ui/react";
 import usePersonCredits from "../hooks/usePersonCredits";
 import MovieCardContainer from "./MovieCardContainer";
 import MovieCard from "./MovieCard";
 import MovieCardSkeleton from "./MovieCardSkeleton";
 import React from "react";
-import Movie from "../entities/Movie";
 
 interface Props {
   person_id: string;
@@ -25,16 +23,13 @@ const PersonKnownFor = ({ person_id }: Props) => {
   let topMovies = movies.cast
     .concat(movies.crew)
     .filter((m) => new Date(m.release_date!).getMilliseconds() <= Date.now())
-    .sort(
-      (a, b) =>
-        b.vote_average! + b.popularity! - a.vote_average! - a.popularity!
-    )
+    .sort((a, b) => b.popularity! - a.popularity!)
     .slice(0, 4);
   const skeletons = [1, 2, 3, 4];
 
   return (
     <Card marginTop={5}>
-      <CardHeader>
+      <CardHeader marginLeft={3}>
         <Heading>Known For</Heading>
       </CardHeader>
       <CardBody>
