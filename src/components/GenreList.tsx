@@ -14,6 +14,7 @@ const GenreList = () => {
   const selectedGenreId = useMovieQueryStore((s) => s.movieQuery.genreId);
   const setSelectedGenreId = useMovieQueryStore((s) => s.setGenreId);
   const setSearchText = useMovieQueryStore((s) => s.setSearchText);
+  const setSearchType = useMovieQueryStore((s) => s.setSearchType);
 
   if (error) return null;
   if (isLoading) return <Spinner />;
@@ -37,6 +38,7 @@ const GenreList = () => {
                 onClick={() => {
                   setSelectedGenreId(genre.id);
                   setSearchText("");
+                  setSearchType("Movie");
                 }}
                 fontSize={"md"}
                 variant="link"

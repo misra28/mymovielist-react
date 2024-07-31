@@ -1,3 +1,5 @@
+import Movie from "./Movie";
+
 export default interface Person {
     id: number;
     name: string;
@@ -10,4 +12,5 @@ export default interface Person {
     deathday?: string;
     place_of_birth?: string;
     also_known_as?: string[];
+    known_for?: Movie[];
 }

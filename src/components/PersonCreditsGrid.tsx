@@ -8,7 +8,7 @@ import {
   Spinner,
 } from "@chakra-ui/react";
 import React from "react";
-import MovieCardContainer from "./MovieCardContainer";
+import CardContainer from "./MovieCardContainer";
 import MovieCardSkeleton from "./MovieCardSkeleton";
 import usePersonCredits from "../hooks/usePersonCredits";
 import MovieCard from "./MovieCard";
@@ -48,18 +48,18 @@ const PersonCreditsGrid = ({ person_id, type }: Props) => {
         >
           {isLoading &&
             skeletons.map((skeleton) => (
-              <MovieCardContainer key={skeleton}>
+              <CardContainer key={skeleton}>
                 <MovieCardSkeleton />
-              </MovieCardContainer>
+              </CardContainer>
             ))}
           {credits.map((movie) => (
             <React.Fragment key={movie.id}>
-              <MovieCardContainer key={movie.id}>
+              <CardContainer key={movie.id}>
                 <MovieCard
                   movie={movie}
                   association={type === "crew" ? movie.job : movie.character}
                 ></MovieCard>
-              </MovieCardContainer>
+              </CardContainer>
             </React.Fragment>
           ))}
         </SimpleGrid>

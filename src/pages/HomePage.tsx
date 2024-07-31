@@ -8,9 +8,9 @@ import {
   Show,
   SimpleGrid,
 } from "@chakra-ui/react";
-import MovieGrid from "../components/MovieGrid";
+import HomePageGrid from "../components/HomePageGrid";
 import MovieFilter from "../components/MovieFilter";
-import MovieHeader from "../components/MovieHeader";
+import HomePageHeader from "../components/HomePageHeader";
 import GenreList from "../components/GenreList";
 
 const HomePage = () => {
@@ -37,7 +37,7 @@ const HomePage = () => {
           <Card>
             <CardBody>
               <Box paddingLeft={2}>
-                <MovieHeader />
+                <HomePageHeader />
                 {/* <Flex marginBottom={5}>
               <Box marginRight={5}>
               <PlatformSelector />
@@ -45,7 +45,7 @@ const HomePage = () => {
               </Box>
               </Flex> */}
               </Box>
-              <MovieGrid />
+              <HomePageGrid />
             </CardBody>
           </Card>
         </GridItem>

@@ -6,7 +6,7 @@ import {
   SimpleGrid,
 } from "@chakra-ui/react";
 import usePersonCredits from "../hooks/usePersonCredits";
-import MovieCardContainer from "./MovieCardContainer";
+import CardContainer from "./MovieCardContainer";
 import MovieCard from "./MovieCard";
 import MovieCardSkeleton from "./MovieCardSkeleton";
 import React from "react";
@@ -35,7 +35,7 @@ const PersonKnownFor = ({ person_id }: Props) => {
   return (
     <Card marginTop={5}>
       <CardHeader marginLeft={3}>
-        <Heading>Known For</Heading>
+        <Heading>Popular Associated Films</Heading>
       </CardHeader>
       <CardBody>
         <SimpleGrid
@@ -45,18 +45,18 @@ const PersonKnownFor = ({ person_id }: Props) => {
         >
           {isLoading &&
             skeletons.map((skeleton) => (
-              <MovieCardContainer key={skeleton}>
+              <CardContainer key={skeleton}>
                 <MovieCardSkeleton />
-              </MovieCardContainer>
+              </CardContainer>
             ))}
           {topMovies.map((movie) => (
             <React.Fragment key={movie.id}>
-              <MovieCardContainer key={movie.id}>
+              <CardContainer key={movie.id}>
                 <MovieCard
                   movie={movie}
                   association={movie.character || movie.job}
                 ></MovieCard>
-              </MovieCardContainer>
+              </CardContainer>
             </React.Fragment>
           ))}
         </SimpleGrid>

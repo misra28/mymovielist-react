@@ -83,6 +83,16 @@ const BuildMovieCredits = ({ people, type }: Props) => {
         <SimpleGrid columns={{ base: 2, md: 3, lg: 4, xl: 5 }} spacing={5}>
           {getCredits}
         </SimpleGrid>
+        <Button
+          size="sm"
+          marginLeft={"40%"}
+          marginTop={"2"}
+          colorScheme="gray"
+          onClick={() => setExpanded(!expanded)}
+          hidden={!expanded}
+        >
+          {buttonLabel}
+        </Button>
       </CardBody>
     </Card>
   );

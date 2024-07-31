@@ -10,12 +10,14 @@ import { BsSearch } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 import useMovieQueryStore from "../store";
 import ResetButton from "./ResetButton";
+import TypeOfSearchSelector from "./TypeOfSearchSelector";
 
 const SearchInput = () => {
   const ref = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
   const setSearchText = useMovieQueryStore((s) => s.setSearchText);
   const searchText = useMovieQueryStore((s) => s.movieQuery.searchText);
+  const searchType = useMovieQueryStore((s) => s.movieQuery.searchType);
 
   const submitSearch = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -27,6 +29,9 @@ const SearchInput = () => {
 
   if (!searchText && ref.current) ref.current.value = "";
 
+  let placeholder = "movies";
+  if (searchType === "Person") placeholder = "people";
+
   return (
     <form onSubmit={submitSearch}>
       <HStack>
@@ -35,11 +40,12 @@ const SearchInput = () => {
           <Input
             ref={ref}
             borderRadius={20}
-            placeholder="Search movies..."
+            placeholder={`Search ${placeholder}...`}
             variant="filled"
           />
         </InputGroup>
-        <Button marginRight={4} type="submit">
+        <TypeOfSearchSelector />
+        <Button marginLeft={2} marginRight={2} type="submit">
           Search
         </Button>
         <ResetButton />

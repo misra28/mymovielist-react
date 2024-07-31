@@ -1,17 +1,4 @@
-import {
-  Card,
-  CardBody,
-  SimpleGrid,
-  Image,
-  Text,
-  Heading,
-  CardHeader,
-  Button,
-} from "@chakra-ui/react";
 import useMovieCredits from "../hooks/useMovieCredits";
-import getImage from "../services/backdrop-url";
-import React, { useState } from "react";
-import noPerson from "../assets/no-person-image.png";
 import BuildMovieCredits from "./BuildMovieCredits";
 
 interface Props {
