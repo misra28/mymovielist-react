@@ -12,6 +12,7 @@ import MovieCardContainer from "./MovieCardContainer";
 import MovieCardSkeleton from "./MovieCardSkeleton";
 import usePersonCredits from "../hooks/usePersonCredits";
 import MovieCard from "./MovieCard";
+import { consolidateMovieArray } from "../services/consolidate-object-array";
 
 interface Props {
   person_id: string;
@@ -25,12 +26,12 @@ const PersonCreditsGrid = ({ person_id, type }: Props) => {
   if (!movies) return null;
 
   let credits = movies.crew;
-
   if (type === "cast") credits = movies.cast;
 
   if (credits.length === 0) return null;
 
-  if (isLoading) return <Spinner />;
+  credits = type === "cast" ? credits : consolidateMovieArray(credits, type)!;
+  if (!credits) return null;
 
   return (
     <Card marginTop={5}>

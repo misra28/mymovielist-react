@@ -13,6 +13,7 @@ import {
 import getImage from "../services/backdrop-url";
 import noPerson from "../assets/no-person-image.png";
 import { Link } from "react-router-dom";
+import { consolidatePersonArray } from "../services/consolidate-object-array";
 
 interface Props {
   people: Person[];
@@ -23,7 +24,7 @@ const BuildMovieCredits = ({ people, type }: Props) => {
   const [expanded, setExpanded] = useState(false);
   let hideButton = false;
 
-  let getCredits = people
+  let getCredits = consolidatePersonArray(people)
     .filter((person) => person.profile_path)
     .map((person) => (
       <React.Fragment>

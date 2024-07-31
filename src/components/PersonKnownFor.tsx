@@ -10,6 +10,9 @@ import MovieCardContainer from "./MovieCardContainer";
 import MovieCard from "./MovieCard";
 import MovieCardSkeleton from "./MovieCardSkeleton";
 import React from "react";
+import consolidateArray, {
+  consolidateMovieArray,
+} from "../services/consolidate-object-array";
 
 interface Props {
   person_id: string;
@@ -20,8 +23,10 @@ const PersonKnownFor = ({ person_id }: Props) => {
 
   if (!movies) return null;
 
-  let topMovies = movies.cast
-    .concat(movies.crew)
+  let topMovies = consolidateMovieArray(
+    movies.cast.concat(movies.crew),
+    "known for"
+  )!
     .filter((m) => new Date(m.release_date!).getMilliseconds() <= Date.now())
     .sort((a, b) => b.popularity! - a.popularity!)
     .slice(0, 4);
