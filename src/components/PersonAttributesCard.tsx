@@ -16,6 +16,8 @@ const PersonAttributesCard = ({ person }: Props) => {
   if (person.deathday) columnCount++;
   if (person.also_known_as && person.also_known_as.length >= 1) columnCount++;
 
+  if (columnCount === 0) return null;
+
   return (
     <Card marginTop={5}>
       <CardBody>
@@ -26,15 +28,15 @@ const PersonAttributesCard = ({ person }: Props) => {
             </DefinitionItem>
           )}
 
-          {person.place_of_birth && (
-            <DefinitionItem term="PLACE OF BIRTH">
-              {person.place_of_birth}
-            </DefinitionItem>
-          )}
-
           {person.deathday && (
             <DefinitionItem term="DATE OF DEATH">
               {formatReleaseDate(person.deathday!)}
+            </DefinitionItem>
+          )}
+
+          {person.place_of_birth && (
+            <DefinitionItem term="PLACE OF BIRTH">
+              {person.place_of_birth}
             </DefinitionItem>
           )}
 

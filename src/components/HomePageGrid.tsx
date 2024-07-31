@@ -35,7 +35,7 @@ const HomePageGrid = () => {
   const fetchedResultsCount =
     data?.pages.reduce((total, page) => total + page.results.length, 0) || 0;
 
-  const addColumns = searchType === "Person" ? 2 : 0;
+  const addColumns = searchType === "Person" ? 2 : 1;
 
   return (
     <InfiniteScroll

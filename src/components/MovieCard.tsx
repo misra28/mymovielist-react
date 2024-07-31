@@ -10,13 +10,22 @@ interface Props {
 }
 
 const MovieCard = ({ movie, association }: Props) => {
+  let movieImage: string;
+  let usingPoster = false;
+
+  if (movie.poster_path) {
+    usingPoster = true;
+    movieImage = getImage(movie.poster_path);
+  } else {
+    movieImage = getImage();
+  }
+
   return (
     <Card variant={"elevated"} bgColor="#121212" borderRadius={10}>
       <Link to={`/movies/${movie.id}`}>
-        <Image
-          src={movie.backdrop_path ? getImage(movie.backdrop_path) : getImage()}
-        />
+        {/* {!usingPoster && <Image src={movieImage} />} */}
         <CardBody>
+          {usingPoster && <Image src={movieImage} marginBottom={2} />}
           <Heading fontSize="2xl" fontWeight={"bold"}>
             {movie.release_date
               ? `${movie.title} (${movie.release_date.substring(0, 4)})`
