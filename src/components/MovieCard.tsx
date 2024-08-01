@@ -23,10 +23,10 @@ const MovieCard = ({ movie, association }: Props) => {
   return (
     <Card variant={"elevated"} bgColor="#121212" borderRadius={10}>
       <Link to={`/movies/${movie.id}`}>
-        {/* {!usingPoster && <Image src={movieImage} />} */}
         <CardBody>
-          {usingPoster && <Image src={movieImage} marginBottom={2} />}
-          <Heading fontSize="2xl" fontWeight={"bold"}>
+          {<Image src={movieImage} marginBottom={2} />}
+          {/* {!usingPoster && <Image src={movieImage} />} */}
+          <Heading fontSize="1.3rem" fontWeight={"bold"}>
             {movie.release_date
               ? `${movie.title} (${movie.release_date.substring(0, 4)})`
               : `${movie.title}`}

@@ -35,7 +35,7 @@ const HomePageGrid = () => {
   const fetchedResultsCount =
     data?.pages.reduce((total, page) => total + page.results.length, 0) || 0;
 
-  const addColumns = searchType === "Person" ? 2 : 1;
+  const addColumns = searchType === "Person" ? 1 : 1;
 
   return (
     <InfiniteScroll
@@ -50,7 +50,7 @@ const HomePageGrid = () => {
           sm: 1 + addColumns,
           md: 2 + addColumns,
           lg: 3 + addColumns,
-          xl: 3 + addColumns,
+          xl: 4 + addColumns,
         }}
         spacing={6}
       >

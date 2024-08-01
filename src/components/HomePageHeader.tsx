@@ -9,7 +9,7 @@ const HomePageHeader = () => {
 
   if (searchType === "Person") {
     if (!searchText) {
-      return <Heading marginBottom={5}>{`Popular Figures in Movies`}</Heading>;
+      return <Heading marginBottom={5}>{`Popular Actors`}</Heading>;
     }
     return (
       <Heading marginBottom={5}>{`Search Results for '${searchText}'`}</Heading>

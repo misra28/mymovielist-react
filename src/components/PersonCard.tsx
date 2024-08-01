@@ -35,7 +35,7 @@ const PersonCard = ({ person }: Props) => {
               ></Image>
             ))}
           </SimpleGrid> */}
-          <Heading fontSize="2xl" fontWeight={"bold"} marginTop={1}>
+          <Heading fontSize="1.3rem" fontWeight={"bold"} marginTop={1}>
             {person.name}
           </Heading>
           <Text>{person.known_for_department}</Text>

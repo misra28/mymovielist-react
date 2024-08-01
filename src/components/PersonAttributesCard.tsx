@@ -45,7 +45,9 @@ const PersonAttributesCard = ({ person }: Props) => {
               <React.Fragment>
                 {person.also_known_as &&
                   person.also_known_as.length >= 1 &&
-                  person.also_known_as.map((alias) => <Text>{alias}</Text>)}
+                  person.also_known_as
+                    .slice(0, 5)
+                    .map((alias) => <Text>{alias}</Text>)}
               </React.Fragment>
             </DefinitionItem>
           )}
