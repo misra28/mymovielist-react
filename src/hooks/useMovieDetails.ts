@@ -1,4 +1,4 @@
-import APIClient from '../services/api-client';
+import APIClient from '../services/tmdb-client';
 import Movie from '../entities/Movie';
 import { useQuery } from '@tanstack/react-query';
 

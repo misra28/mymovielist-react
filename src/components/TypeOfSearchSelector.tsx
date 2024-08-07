@@ -1,6 +1,6 @@
 import { Menu, MenuButton, Button, MenuList, MenuItem } from "@chakra-ui/react";
 import { BsChevronDown } from "react-icons/bs";
-import useMovieQueryStore from "../store";
+import useMovieQueryStore from "../movieStore";
 
 const TypeOfSearchSelector = () => {
   const searchType = useMovieQueryStore((s) => s.movieQuery.searchType);

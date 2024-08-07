@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import APIClient, { FetchResponse } from "../services/api-client";
+import APIClient, { FetchResponse } from "../services/tmdb-client";
 import Video from "../entities/Video";
 
 const useMovieVideos = (movie_id: number) => {

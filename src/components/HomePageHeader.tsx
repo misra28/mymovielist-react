@@ -1,5 +1,5 @@
 import { Heading } from "@chakra-ui/react";
-import useMovieQueryStore from "../store";
+import useMovieQueryStore from "../movieStore";
 import useGenre from "../hooks/useGenre";
 
 const HomePageHeader = () => {

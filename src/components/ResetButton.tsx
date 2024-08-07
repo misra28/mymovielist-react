@@ -1,5 +1,5 @@
 import { Button } from "@chakra-ui/react";
-import useMovieQueryStore from "../store";
+import useMovieQueryStore from "../movieStore";
 
 const ResetButton = () => {
   const { setPrimaryReleaseYear, setSearchText, setGenreId, setSearchType } =

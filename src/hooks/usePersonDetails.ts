@@ -1,4 +1,4 @@
-import APIClient from '../services/api-client';
+import APIClient from '../services/tmdb-client';
 import { useQuery } from '@tanstack/react-query';
 import Person from '../entities/Person';
 

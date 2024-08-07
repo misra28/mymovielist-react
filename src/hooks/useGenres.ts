@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import APIClient, { FetchGenres } from "../services/api-client"
+import APIClient, { FetchGenres } from "../services/tmdb-client"
 import Genre from "../entities/Genre";
 
 

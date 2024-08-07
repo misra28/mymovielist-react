@@ -8,7 +8,7 @@ import {
 import { useRef } from "react";
 import { BsSearch } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
-import useMovieQueryStore from "../store";
+import useMovieQueryStore from "../movieStore";
 import ResetButton from "./ResetButton";
 import TypeOfSearchSelector from "./TypeOfSearchSelector";
 
@@ -35,7 +35,7 @@ const SearchInput = () => {
   return (
     <form onSubmit={submitSearch}>
       <HStack>
-        <InputGroup width={"53vw"} marginRight={"1vw"}>
+        <InputGroup width={"43vw"} marginRight={"1vw"}>
           <InputLeftElement children={<BsSearch />} />
           <Input
             ref={ref}

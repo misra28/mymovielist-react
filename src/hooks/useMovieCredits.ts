@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import APIClient, { FetchMovieCredits } from "../services/api-client"
+import APIClient, { FetchMovieCredits } from "../services/tmdb-client"
 import Person from "../entities/Person";
 
 

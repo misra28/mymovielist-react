@@ -13,7 +13,7 @@ const months = [
     'December'
 ];
 
-const formatReleaseDate = (date: string) => {
+const formatDate = (date: string) => {
   const year = date.substring(0, 4);
   const month = date.substring(5, 7);
   const day = date.substring(8, 10);
@@ -21,4 +21,4 @@ const formatReleaseDate = (date: string) => {
   return `${months[parseInt(month) - 1]} ${parseInt(day)}, ${year}`;
 }
 
-export default formatReleaseDate;
+export default formatDate;

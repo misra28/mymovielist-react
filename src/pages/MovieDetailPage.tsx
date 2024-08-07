@@ -13,6 +13,7 @@ import MoviePostersGrid from "../components/MoviePostersGrid";
 import MovieAttributesCard from "../components/MovieAttributesCard";
 import MovieCreditsCard from "../components/MovieCreditsCard";
 import MovieVideo from "../components/MovieVideo";
+import AddListEntryButton from "../components/AddListEntryButton";
 
 const MovieDetailPage = () => {
   const { movie_id } = useParams();
@@ -39,7 +40,7 @@ const MovieDetailPage = () => {
           <MovieCreditsCard movie_id={movie_id!} />
         </GridItem>
         <GridItem>
-          {/* <MovieVideo movie_id={movie_id!} /> */}
+          <AddListEntryButton movie_id={movie.id} />
           <MoviePostersGrid
             image_count={8}
             movie_id={movie_id!}

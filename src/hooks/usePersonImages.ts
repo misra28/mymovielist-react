@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import Poster from "../entities/Poster";
-import APIClient, { FetchResponse } from "../services/api-client";
+import APIClient, { FetchResponse } from "../services/tmdb-client";
 
 const usePersonImages = (person_id: number) => {
   const apiClient = new APIClient<Poster>(`person/${person_id}/images`);

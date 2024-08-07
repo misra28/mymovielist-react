@@ -7,7 +7,7 @@ import {
   Spinner,
 } from "@chakra-ui/react";
 import useGenres from "../hooks/useGenres";
-import useMovieQueryStore from "../store";
+import useMovieQueryStore from "../movieStore";
 
 const GenreList = () => {
   const { data, isLoading, error } = useGenres();

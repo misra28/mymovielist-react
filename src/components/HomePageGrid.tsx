@@ -4,7 +4,7 @@ import useSearchMovies from "../hooks/useSearchMovies";
 import MovieCardSkeleton from "./MovieCardSkeleton";
 import CardContainer from "./MovieCardContainer";
 import MovieCard from "./MovieCard";
-import useMovieQueryStore from "../store";
+import useMovieQueryStore from "../movieStore";
 import useDiscoverMovies from "../hooks/useDiscoverMovies";
 import InfiniteScroll from "react-infinite-scroll-component";
 import useSearchPeople from "../hooks/useSearchPeople";
@@ -70,16 +70,15 @@ const HomePageGrid = () => {
               ))}
             </React.Fragment>
           ))}
-        {searchType === "Person" &&
-          data?.pages.map((page, index) => (
-            <React.Fragment key={index}>
-              {page.results.map((person) => (
-                <CardContainer key={person.id}>
-                  <PersonCard person={person as Person} />
-                </CardContainer>
-              ))}
-            </React.Fragment>
-          ))}
+        {data?.pages.map((page, index) => (
+          <React.Fragment key={index}>
+            {page.results.map((person) => (
+              <CardContainer key={person.id}>
+                <PersonCard person={person as Person} />
+              </CardContainer>
+            ))}
+          </React.Fragment>
+        ))}
       </SimpleGrid>
     </InfiniteScroll>
   );

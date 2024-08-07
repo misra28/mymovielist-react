@@ -1,6 +1,6 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
-import APIClient, { FetchResponse } from "../services/api-client"
-import useMovieQueryStore from "../store";
+import APIClient, { FetchResponse } from "../services/tmdb-client"
+import useMovieQueryStore from "../movieStore";
 import Person from "../entities/Person";
 
 const apiClient = new APIClient<Person>('/search/person');

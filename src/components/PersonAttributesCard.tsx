@@ -1,7 +1,7 @@
 import { Card, CardBody, SimpleGrid, Text } from "@chakra-ui/react";
 import React from "react";
 import Person from "../entities/Person";
-import formatReleaseDate from "../services/date-conversion";
+import formatDate from "../services/date-conversion";
 import DefinitionItem from "./DefinitionItem";
 
 interface Props {
@@ -24,13 +24,13 @@ const PersonAttributesCard = ({ person }: Props) => {
         <SimpleGrid columns={columnCount} as="dl">
           {person.birthday && (
             <DefinitionItem term="DATE OF BIRTH">
-              {formatReleaseDate(person.birthday!)}
+              {formatDate(person.birthday!)}
             </DefinitionItem>
           )}
 
           {person.deathday && (
             <DefinitionItem term="DATE OF DEATH">
-              {formatReleaseDate(person.deathday!)}
+              {formatDate(person.deathday!)}
             </DefinitionItem>
           )}
 

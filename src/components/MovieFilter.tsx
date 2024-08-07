@@ -1,6 +1,6 @@
 import { Heading, Input, InputGroup } from "@chakra-ui/react";
 import { useRef } from "react";
-import useMovieQueryStore from "../store";
+import useMovieQueryStore from "../movieStore";
 
 const MovieFilter = () => {
   const ref = useRef<HTMLInputElement>(null);

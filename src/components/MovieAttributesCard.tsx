@@ -3,7 +3,7 @@ import DefinitionItem from "./DefinitionItem";
 import Movie from "../entities/Movie";
 import minutesToHours from "../services/minutes-to-hours";
 import React from "react";
-import formatReleaseDate from "../services/date-conversion";
+import formatDate from "../services/date-conversion";
 
 interface Props {
   movie: Movie;
@@ -15,7 +15,7 @@ const MovieAttributesCard = ({ movie }: Props) => {
       <CardBody>
         <SimpleGrid columns={2} as="dl">
           <DefinitionItem term="RELEASE DATE">
-            {formatReleaseDate(movie.release_date!)}
+            {formatDate(movie.release_date!)}
           </DefinitionItem>
 
           <DefinitionItem term="RUNTIME">
