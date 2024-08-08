@@ -34,8 +34,10 @@ const HomePageGrid = () => {
   if (error) return <Text>{error.message}</Text>;
 
   let fetchedResultsCount = 0;
-  for (let page of data?.pages!) {
-    fetchedResultsCount += page.results.length;
+  if (data?.pages) {
+    for (let page of data.pages) {
+      fetchedResultsCount += page.results.length;
+    }
   }
 
   // data?.pages.reduce(
