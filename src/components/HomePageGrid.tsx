@@ -12,6 +12,7 @@ import usePopularPeople from "../hooks/usePopularPeople";
 import Movie from "../entities/Movie";
 import PersonCard from "./PersonCard";
 import Person from "../entities/Person";
+import { FetchResponse } from "../services/tmdb-client";
 
 const HomePageGrid = () => {
   const searchType = useMovieQueryStore((s) => s.movieQuery.searchType);
@@ -32,8 +33,16 @@ const HomePageGrid = () => {
 
   if (error) return <Text>{error.message}</Text>;
 
-  const fetchedResultsCount =
-    data?.pages.reduce((total, page) => total + page.results.length, 0) || 0;
+  let fetchedResultsCount = 0;
+  for (let page of data?.pages!) {
+    fetchedResultsCount += page.results.length;
+  }
+
+  // data?.pages.reduce(
+  //   (total: number, page: FetchResponse<Movie> | FetchResponse<Person>) =>
+  //     total + page.results.length,
+  //   0
+  // ) || 0;
 
   const addColumns = searchType === "Person" ? 1 : 1;
 
