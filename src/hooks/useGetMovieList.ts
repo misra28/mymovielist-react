@@ -4,7 +4,7 @@ import useCredentialsQueryStore from '../credentialsStore';
 import getDjangoEndpoint from '../django-endpoint';
 import { FetchListResponse } from '../services/django-api-client';
 
-const useGetMovieList = () => {
+const useGetMovieList = (listSortType: string) => {
     const accessToken = localStorage.getItem("access_token")!;
       const userId = useCredentialsQueryStore(
         (s) => s.credentialsQuery.userId
@@ -19,11 +19,11 @@ const useGetMovieList = () => {
       });
     
       const getEntries = ({pageParam = 1}) => instance
-          .get<FetchListResponse>("movielist/list-entries", { params: { format: "json", page: pageParam } })
+          .get<FetchListResponse>("movielist/list-entries", { params: { format: "json", ordering: listSortType, page: pageParam} })
           .then((res) => res.data);
       
       return useInfiniteQuery<FetchListResponse, Error>({
-        queryKey: ['movieList', userId],
+        queryKey: ['movieList', userId, listSortType],
         queryFn: getEntries,
         getNextPageParam: (lastPage, allPages) => {
             return lastPage.next ? allPages.length + 1 : undefined;

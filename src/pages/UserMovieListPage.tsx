@@ -7,7 +7,7 @@ import {
   SimpleGrid,
   Spinner,
 } from "@chakra-ui/react";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useNavigate } from "react-router-dom";
 import ListEntryCard from "../components/ListEntryCard";
@@ -17,19 +17,21 @@ import useCredentialsQueryStore from "../credentialsStore";
 import useGetMovieList from "../hooks/useGetMovieList";
 import getUserInfo from "../services/get-user-info";
 import authService from "../services/auth-service";
+import SortMovieListSelector from "../components/SortMovieListSelector";
 
 const UserMovieListPage = () => {
   const navigate = useNavigate();
   const isAuthenticated = !!localStorage.getItem("access_token");
   if (!isAuthenticated) navigate("/user/");
 
-  console.log("isAuthenticated: ", isAuthenticated);
-
   const user = getUserInfo();
   if (!user) return <Spinner />;
 
+  const listSortType = useCredentialsQueryStore(
+    (s) => s.credentialsQuery.listSortType
+  );
   const { data, error, isLoading, fetchNextPage, hasNextPage } =
-    useGetMovieList();
+    useGetMovieList(listSortType!);
   const fetchedResultsCount =
     data?.pages.reduce((total, page) => total + page.results.length, 0) || 0;
 
@@ -55,6 +57,7 @@ const UserMovieListPage = () => {
       </Box>
       <Card>
         <CardBody>
+          <SortMovieListSelector />
           <InfiniteScroll
             dataLength={fetchedResultsCount}
             hasMore={!!hasNextPage}
