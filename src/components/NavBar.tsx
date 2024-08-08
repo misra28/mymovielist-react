@@ -1,4 +1,4 @@
-import { Button, Heading, HStack, Image } from "@chakra-ui/react";
+import { Button, Heading, HStack, Image, Text } from "@chakra-ui/react";
 import ColorModeSwitch from "./ColorModeSwitch";
 import { Link } from "react-router-dom";
 import SearchInput from "./SearchInput";
@@ -14,11 +14,18 @@ const NavBar = () => {
       </Link>
       <Heading padding="10px">MyMovieList</Heading>
       <SearchInput />
-      <Link to="user">
+      <Link to={username ? `user/list` : `user`}>
         <Heading fontSize={"1rem"}>
           {username ? `Logged in as ${username}` : `Log In`}
         </Heading>
       </Link>
+      {!username && (
+        <Link to={`/register`}>
+          <Heading fontSize={"1rem"} marginLeft={"1rem"}>
+            Register
+          </Heading>
+        </Link>
+      )}
       {/* <ColorModeSwitch /> */}
     </HStack>
   );

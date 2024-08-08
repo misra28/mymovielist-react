@@ -22,10 +22,25 @@ const login = async (username: string, password: string) => {
     }
 };
 
+const register = async (email: string, username: string, password: string) => {
+    try {
+        await axios.post(`${API_URL}auth/users/`, {
+            email,
+            username,
+            password,
+        });
+        const response = login(username, password);
+        return response;
+    } catch (error) {
+        console.error("Registration failed", error);
+        throw error;
+    }
+};
+
 const refreshToken = async () => {
     try {
         const refresh_token = localStorage.getItem('refresh_token');
-        const response = await axios.post(`${API_URL}auth/jwt/refresh`, {
+        const response = await axios.post(`${API_URL}auth/jwt/refresh/`, {
             refresh: refresh_token,
         });
         if (response.data.access) {
@@ -49,4 +64,5 @@ export default {
     login,
     refreshToken,
     logout,
+    register,
 };
