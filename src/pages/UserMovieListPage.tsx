@@ -38,6 +38,7 @@ const UserMovieListPage = () => {
   const skeletons = [1, 2, 3, 4, 5, 6, 7, 8, 9];
   const setUsername = useCredentialsQueryStore((s) => s.setUsername);
   const setUserId = useCredentialsQueryStore((s) => s.setUserId);
+  const userId = useCredentialsQueryStore((s) => s.credentialsQuery.userId);
 
   return (
     <>
@@ -45,6 +46,7 @@ const UserMovieListPage = () => {
         <Heading marginBottom={"1rem"}>{`View Your MovieList`}</Heading>
         <Button
           marginBottom={"1rem"}
+          marginRight={"1rem"}
           onClick={() => {
             authService.logout();
             setUsername();
@@ -54,6 +56,18 @@ const UserMovieListPage = () => {
         >
           Log Out
         </Button>
+        {/* <Button
+          color={"red"}
+          marginBottom={"1rem"}
+          onClick={() => {
+            authService.deleteAccount();
+            setUsername();
+            setUserId();
+            navigate(`/movies`);
+          }}
+        >
+          Delete Account
+        </Button> */}
       </Box>
       <Card>
         <CardBody>

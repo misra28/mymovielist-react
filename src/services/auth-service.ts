@@ -60,9 +60,20 @@ const logout = () => {
     delete axios.defaults.headers.common['Authorization'];
 };
 
+const deleteAccount = async () => {
+    try {
+        await axios.delete(`${API_URL}auth/users/me/`);
+    } catch (error) {
+        console.error("Account deletion failed", error);
+        throw error;
+    }
+    logout();
+}
+
 export default {
     login,
     refreshToken,
     logout,
     register,
+    deleteAccount,
 };
