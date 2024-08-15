@@ -24,6 +24,7 @@ const SortMovieListSelector = () => {
     <>
       <Menu>
         <MenuButton
+          bgColor="#121212"
           marginBottom={"1rem"}
           marginRight={"1rem"}
           as={Button}
@@ -54,6 +55,7 @@ const SortMovieListSelector = () => {
       </Menu>
       <Menu>
         <MenuButton
+          bgColor="#121212"
           marginBottom={"1rem"}
           as={Button}
           rightIcon={<BsChevronDown />}

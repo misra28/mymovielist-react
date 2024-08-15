@@ -13,13 +13,13 @@ const AddListEntryButton = ({ movie_id }: Props) => {
   if (!userId)
     return (
       <Button marginBottom={"1rem"} onClick={() => navigate(`/user`)}>
-        Log In to Add to your List
+        Log in to add to your MovieList
       </Button>
     );
 
   return (
     <Button marginBottom={"1rem"} onClick={() => navigate(`/add/${movie_id}`)}>
-      Add This Movie to your MovieList
+      Add this movie to your MovieList
     </Button>
   );
 };
