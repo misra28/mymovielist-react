@@ -16,14 +16,7 @@ import axios from "axios";
 
 const UpdateListEntryPage = () => {
   const { entry_id } = useParams();
-  if (!entry_id) {
-    console.error("No entry id");
-    return null;
-  }
-  const { data, isLoading, error } = useListEntry(entry_id);
-
-  if (isLoading) return <Spinner />;
-  if (error) console.error(error);
+  const { data, isLoading, error } = useListEntry(entry_id || "");
 
   const ratingRef = useRef<HTMLInputElement>(null);
   const dateWatchedRef = useRef<HTMLInputElement>(null);
@@ -31,7 +24,13 @@ const UpdateListEntryPage = () => {
 
   const navigate = useNavigate();
   const accessToken = localStorage.getItem("access_token")!;
-  console.log("access token: ", accessToken);
+  if (!entry_id) {
+    console.error("No entry id");
+    return null;
+  }
+
+  if (isLoading) return <Spinner />;
+  if (error) return null;
 
   const submitUpdatedInfo = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
