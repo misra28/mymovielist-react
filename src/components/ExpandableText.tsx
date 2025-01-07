@@ -3,7 +3,7 @@ import { Button, Text } from "@chakra-ui/react";
 
 interface Props {
   children: string;
-  limit: number;
+  limit?: number;
 }
 
 const ExpandableText = ({ children, limit = 500 }: Props) => {

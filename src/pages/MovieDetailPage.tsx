@@ -1,4 +1,5 @@
 import {
+  Button,
   Grid,
   GridItem,
   Heading,
@@ -6,22 +7,25 @@ import {
   Spinner,
   Text,
 } from "@chakra-ui/react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import useMovieDetails from "../hooks/useMovieDetails";
 import ExpandableText from "../components/ExpandableText";
 import MoviePostersGrid from "../components/MoviePostersGrid";
 import MovieAttributesCard from "../components/MovieAttributesCard";
 import MovieCreditsCard from "../components/MovieCreditsCard";
 import MovieVideo from "../components/MovieVideo";
+import useCredentialsQueryStore from "../credentialsStore";
 import AddListEntryButton from "../components/AddListEntryButton";
 
 const MovieDetailPage = () => {
   const { movie_id } = useParams();
+  const navigate = useNavigate();
   const {
     data: movie,
     isLoading,
     error,
   } = useMovieDetails(parseInt(movie_id!));
+  const userId = useCredentialsQueryStore((s) => s.credentialsQuery.userId);
 
   if (isLoading) return <Spinner />;
   if (error || !movie) return null;
@@ -40,7 +44,11 @@ const MovieDetailPage = () => {
           <MovieCreditsCard movie_id={movie_id!} />
         </GridItem>
         <GridItem>
-          <AddListEntryButton movie_id={movie.id} />
+          {(userId && <AddListEntryButton movie_id={movie_id!} />) || (
+            <Button marginBottom={"1rem"} onClick={() => navigate(`/user`)}>
+              Log in to add to your MovieList
+            </Button>
+          )}
           <MoviePostersGrid
             image_count={8}
             movie_id={movie_id!}
