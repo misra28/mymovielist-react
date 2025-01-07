@@ -32,7 +32,7 @@ const ListEntryCard = ({ listEntry }: Props) => {
         </CardHeader>
         <CardBody>
           <HStack>
-            <Image width={"40%"} src={listEntry.poster_url} marginBottom={2} />
+            <Image width={"30%"} src={listEntry.poster_url} marginBottom={2} />
             <Box marginLeft={"1rem"}>
               {listEntry.rating && (
                 <React.Fragment>

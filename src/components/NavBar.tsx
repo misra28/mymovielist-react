@@ -13,7 +13,7 @@ const NavBar = () => {
         <Image src={tmdb} width="60px" objectFit={"cover"} />
       </Link>
       <Heading padding="10px">MyMovieList</Heading>
-      <SearchInput />
+      <SearchInput width={"65vw"} />
       <Link to={username ? `user/list` : `user`}>
         <Heading fontSize={"1rem"}>
           {username ? `Logged in as ${username}` : `Log In`}

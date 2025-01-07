@@ -10,7 +10,7 @@ const TypeOfSearchSelector = () => {
 
   return (
     <Menu>
-      <MenuButton as={Button} rightIcon={<BsChevronDown />}>
+      <MenuButton width={"7vw"} as={Button} rightIcon={<BsChevronDown />}>
         {searchType || "Movie"}
       </MenuButton>
       <MenuList>

@@ -16,6 +16,7 @@ export default interface Movie {
     popularity?: number;
     job?: string;
     character?: string;
+    order?: number;
     genres?: Genre[];
     production_companies?: Company[];
 }

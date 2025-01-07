@@ -1,8 +1,10 @@
 import axios from 'axios';
 import getDjangoEndpoint from '../django-endpoint';
+import CryptoJS from 'crypto-js';
 import useCredentialsQueryStore from '../credentialsStore';
 
 const API_URL = getDjangoEndpoint();
+const ENCRYPTION_KEY = 'your-encryption-key';
 
 const login = async (username: string, password: string) => {
     try {
@@ -22,17 +24,25 @@ const login = async (username: string, password: string) => {
     }
 };
 
+const encryptPassword = (password: string): string => {
+    return CryptoJS.AES.encrypt(password, ENCRYPTION_KEY).toString();
+};
+  
 const register = async (email: string, username: string, password: string) => {
+    console.log('Email: ', email);
+    console.log('Username: ', username);
+    console.log('Unencrypted password: ', password);
     try {
+        const encryptedPassword = encryptPassword(password);
+        console.log('Encrypted password: ', encryptedPassword);
         await axios.post(`${API_URL}auth/users/`, {
             email,
             username,
-            password,
+            password: encryptedPassword,
         });
-        const response = login(username, password);
-        return response;
+        return login(username, encryptedPassword);
     } catch (error) {
-        console.error("Registration failed", error);
+        console.error('Registration failed', error);
         throw error;
     }
 };

@@ -24,8 +24,8 @@ export const consolidateMovieArray = (arr: Movie[], type: 'cast' | 'crew' | 'kno
     return consolidateArray(type, arr) as Movie[];
 }
 
-export const consolidatePersonArray = (arr: Person[]) => {
-    return consolidateArray('crew', arr) as Person[];
+export const consolidatePersonArray = (arr: Person[], type: 'cast' | 'crew' | 'known for') => {
+    return consolidateArray(type, arr) as Person[];
 }
 
 export default consolidateArray;

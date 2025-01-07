@@ -23,7 +23,7 @@ const PersonDetailPage = () => {
       <SimpleGrid columns={{ base: 1, md: 2 }} spacing={5} marginBottom={5}>
         <GridItem>
           <Heading marginBottom={3}>{person.name}</Heading>
-          <ExpandableText>{person.biography!}</ExpandableText>
+          <ExpandableText limit={1530}>{person.biography!}</ExpandableText>
         </GridItem>
         <GridItem>
           <PersonProfileGrid person_id={person_id!} />

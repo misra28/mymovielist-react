@@ -27,10 +27,14 @@ const PersonKnownFor = ({ person_id }: Props) => {
     movies.cast.concat(movies.crew),
     "known for"
   )!
-    .filter((m) => new Date(m.release_date!).getMilliseconds() <= Date.now())
+    .filter(
+      (m) =>
+        new Date(m.release_date!).getMilliseconds() <= Date.now() &&
+        m.order! < 4
+    )
     .sort((a, b) => b.popularity! - a.popularity!)
-    .slice(0, 4);
-  const skeletons = [1, 2, 3, 4];
+    .slice(0, 5);
+  const skeletons = [1, 2, 3, 4, 5];
 
   return (
     <Card marginTop={5}>
@@ -40,7 +44,7 @@ const PersonKnownFor = ({ person_id }: Props) => {
       <CardBody>
         <SimpleGrid
           padding="10px"
-          columns={{ sm: 1, md: 2, lg: 3, xl: 4 }}
+          columns={{ sm: 2, md: 3, lg: 4, xl: 5 }}
           spacing={6}
         >
           {isLoading &&

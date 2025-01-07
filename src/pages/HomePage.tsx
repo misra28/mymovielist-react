@@ -24,7 +24,7 @@ const HomePage = () => {
         }}
       >
         <Show above="lg">
-          <GridItem area="aside" paddingX={5}>
+          <GridItem area="aside" marginRight={5}>
             <Card>
               <CardBody>
                 <MovieFilter />

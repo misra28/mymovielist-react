@@ -12,7 +12,11 @@ import useMovieQueryStore from "../movieStore";
 import ResetButton from "./ResetButton";
 import TypeOfSearchSelector from "./TypeOfSearchSelector";
 
-const SearchInput = () => {
+interface Props {
+  width: string;
+}
+
+const SearchInput = ({ width }: Props) => {
   const ref = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
   const setSearchText = useMovieQueryStore((s) => s.setSearchText);
@@ -34,8 +38,8 @@ const SearchInput = () => {
 
   return (
     <form onSubmit={submitSearch}>
-      <HStack>
-        <InputGroup width={"43vw"} marginRight={"1vw"}>
+      <HStack width={width}>
+        <InputGroup marginRight={"1vw"}>
           <InputLeftElement children={<BsSearch />} />
           <Input
             ref={ref}

@@ -43,7 +43,7 @@ const PersonCreditsGrid = ({ person_id, type }: Props) => {
       <CardBody>
         <SimpleGrid
           padding="10px"
-          columns={{ sm: 2, md: 3, lg: 4, xl: 5 }}
+          columns={{ sm: 3, md: 4, lg: 5, xl: 6 }}
           spacing={6}
         >
           {isLoading &&

@@ -3,6 +3,9 @@ import {
   Button,
   Card,
   CardBody,
+  Container,
+  Flex,
+  Grid,
   Heading,
   SimpleGrid,
   Spinner,
@@ -42,9 +45,16 @@ const UserMovieListPage = () => {
 
   return (
     <>
-      <Box>
+      <Grid
+        width="100vw"
+        display="flex"
+        flexDirection="column"
+        justifyContent="center"
+        alignItems="center"
+      >
         <Heading marginBottom={"1rem"}>{`View Your MovieList`}</Heading>
         <Button
+          width="6rem"
           marginBottom={"1rem"}
           marginRight={"1rem"}
           onClick={() => {
@@ -68,36 +78,40 @@ const UserMovieListPage = () => {
         >
           Delete Account
         </Button> */}
-      </Box>
-      <Card>
-        <CardBody>
-          <SortMovieListSelector />
-          <InfiniteScroll
-            dataLength={fetchedResultsCount}
-            hasMore={!!hasNextPage}
-            next={() => fetchNextPage()}
-            loader={<MovieCardSkeleton />}
-          >
-            <SimpleGrid columns={{ base: 1, md: 2, lg: 3, xl: 3 }} spacing={5}>
-              {isLoading &&
-                skeletons.map((skeleton) => (
-                  <CardContainer key={skeleton}>
-                    <MovieCardSkeleton />
-                  </CardContainer>
-                ))}
-              {data?.pages.map((page, index) => (
-                <React.Fragment key={index}>
-                  {page.results.map((le) => (
-                    <CardContainer key={le.id}>
-                      <ListEntryCard listEntry={le} />
+
+        <Card width={"70%"}>
+          <CardBody>
+            <SortMovieListSelector />
+            <InfiniteScroll
+              dataLength={fetchedResultsCount}
+              hasMore={!!hasNextPage}
+              next={() => fetchNextPage()}
+              loader={<MovieCardSkeleton />}
+            >
+              <SimpleGrid
+                columns={{ base: 1, md: 1, lg: 2, xl: 2 }}
+                spacing={5}
+              >
+                {isLoading &&
+                  skeletons.map((skeleton) => (
+                    <CardContainer key={skeleton}>
+                      <MovieCardSkeleton />
                     </CardContainer>
                   ))}
-                </React.Fragment>
-              ))}
-            </SimpleGrid>
-          </InfiniteScroll>
-        </CardBody>
-      </Card>
+                {data?.pages.map((page, index) => (
+                  <React.Fragment key={index}>
+                    {page.results.map((le) => (
+                      <CardContainer key={le.id}>
+                        <ListEntryCard listEntry={le} />
+                      </CardContainer>
+                    ))}
+                  </React.Fragment>
+                ))}
+              </SimpleGrid>
+            </InfiniteScroll>
+          </CardBody>
+        </Card>
+      </Grid>
     </>
   );
 };
