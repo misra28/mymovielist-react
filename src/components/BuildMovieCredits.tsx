@@ -24,7 +24,7 @@ const BuildMovieCredits = ({ people, type }: Props) => {
   const [expanded, setExpanded] = useState(false);
   let hideButton = false;
 
-  let getCredits = consolidatePersonArray(people)
+  let getCredits = consolidatePersonArray(people, type)
     .filter((person) => person.profile_path)
     .map((person) => (
       <React.Fragment>
