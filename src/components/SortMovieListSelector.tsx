@@ -6,7 +6,7 @@ import {
   MenuItem,
   Text,
 } from "@chakra-ui/react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BsChevronDown } from "react-icons/bs";
 import useCredentialsQueryStore from "../credentialsStore";
 
@@ -17,8 +17,11 @@ const SortMovieListSelector = () => {
   const [isAscending, setIsAscending] = useState(true);
   const setListSortType = useCredentialsQueryStore((s) => s.setListSortType);
 
-  if (!isAscending) setListSortType(`-${searchType}`);
-  else setListSortType(`${searchType}`);
+  const sortType = isAscending ? searchType : `-${searchType}`;
+
+  useEffect(() => {
+    setListSortType(sortType);
+  }, [sortType, setListSortType]);
 
   return (
     <>
@@ -26,7 +29,7 @@ const SortMovieListSelector = () => {
         <MenuButton
           bgColor="#121212"
           marginBottom={"1rem"}
-          marginRight={"1rem"}
+          marginRight={"0.5rem"}
           as={Button}
           rightIcon={<BsChevronDown />}
         >

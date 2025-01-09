@@ -17,6 +17,10 @@ import ListEntry from "../entities/ListEntry";
 import getDjangoEndpoint from "../django-endpoint";
 import axios from "axios";
 
+export const placeholderRating = "-1";
+export const placeholderDate = "1000-01-01";
+export const placeholderComments = "NA";
+
 const AddListEntryPage = () => {
   const { movie_id } = useParams();
   if (!movie_id) {
@@ -31,10 +35,8 @@ const AddListEntryPage = () => {
   const ratingRef = useRef<HTMLInputElement>(null);
   const dateWatchedRef = useRef<HTMLInputElement>(null);
   const commentsRef = useRef<HTMLInputElement>(null);
-
   const navigate = useNavigate();
   const userId = useCredentialsQueryStore((s) => s.credentialsQuery.userId);
-
   const accessToken = localStorage.getItem("access_token")!;
 
   const submitAddedEntry = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -44,9 +46,9 @@ const AddListEntryPage = () => {
       movie_title: data?.title!,
       poster_url: getImage(data?.poster_path!),
       user: userId,
-      rating: parseFloat(ratingRef.current?.value!),
-      date_watched: dateWatchedRef.current?.value,
-      comments: commentsRef.current?.value,
+      rating: parseFloat(ratingRef.current?.value || placeholderRating),
+      date_watched: dateWatchedRef.current?.value || placeholderDate,
+      comments: commentsRef.current?.value || placeholderComments,
     };
     let response: ListEntry;
     const instance = axios.create({
@@ -64,7 +66,7 @@ const AddListEntryPage = () => {
         .then((res) => res.data);
       navigate("/user/list");
     } catch (e) {
-      alert(`Failed to add '${data?.title}' to the list: ${e}`);
+      alert(`Failed to add '${data?.title}' to the list.`);
     }
   };
 

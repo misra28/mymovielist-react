@@ -29,7 +29,7 @@ const GenreList = () => {
         Genres
       </Heading>
       <SimpleGrid display="flex">
-        <List textAlign={"center"} marginLeft={6}>
+        <List textAlign={"center"} marginLeft={8}>
           {data?.genres.map((genre) => (
             <ListItem key={genre.id} paddingY="5px">
               <Button

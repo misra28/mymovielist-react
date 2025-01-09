@@ -1,5 +1,5 @@
 import { SimpleGrid, Text } from "@chakra-ui/react";
-import React from "react";
+import React, { useEffect } from "react";
 import useSearchMovies from "../hooks/useSearchMovies";
 import MovieCardSkeleton from "./MovieCardSkeleton";
 import CardContainer from "./MovieCardContainer";
@@ -15,14 +15,17 @@ import Person from "../entities/Person";
 import { FetchResponse } from "../services/tmdb-client";
 
 const HomePageGrid = () => {
-  const searchType = useMovieQueryStore((s) => s.movieQuery.searchType);
   const setSearchType = useMovieQueryStore((s) => s.setSearchType);
-  if (!searchType) setSearchType("Movie");
-
   const searchText = useMovieQueryStore((s) => s.movieQuery.searchText);
-
+  const searchType = useMovieQueryStore((s) => s.movieQuery.searchType);
   const useMovies = searchText ? useSearchMovies : useDiscoverMovies;
   const usePeople = searchText ? useSearchPeople : usePopularPeople;
+
+  useEffect(() => {
+    if (!searchType) {
+      setSearchType("Movie");
+    }
+  }, [searchType, setSearchType]);
 
   const useMoviesOrPeople = searchType === "Movie" ? useMovies : usePeople;
 

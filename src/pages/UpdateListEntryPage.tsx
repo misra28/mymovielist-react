@@ -13,6 +13,11 @@ import useListEntry from "../hooks/useListEntry";
 import ListEntry from "../entities/ListEntry";
 import getDjangoEndpoint from "../django-endpoint";
 import axios from "axios";
+import {
+  placeholderComments,
+  placeholderDate,
+  placeholderRating,
+} from "./AddListEntryPage";
 
 const UpdateListEntryPage = () => {
   const { entry_id } = useParams();
@@ -40,9 +45,9 @@ const UpdateListEntryPage = () => {
       movie_title: data?.movie_title!,
       poster_url: data?.poster_url!,
       user: data?.user!,
-      rating: parseFloat(ratingRef.current?.value!),
-      date_watched: dateWatchedRef.current?.value,
-      comments: commentsRef.current?.value,
+      rating: parseFloat(ratingRef.current?.value! || placeholderRating),
+      date_watched: dateWatchedRef.current?.value || placeholderDate,
+      comments: commentsRef.current?.value || placeholderComments,
     } as ListEntry;
     console.log(listEntry);
     let updatedData: ListEntry;
@@ -85,7 +90,9 @@ const UpdateListEntryPage = () => {
             borderRadius={20}
             placeholder={`Rating`}
             variant="filled"
-            defaultValue={data?.rating}
+            defaultValue={
+              data?.rating.toString() != placeholderRating ? data?.rating : ""
+            }
           />
         </InputGroup>
         <InputGroup width={"53vw"} marginBottom={"1vw"}>
@@ -95,9 +102,11 @@ const UpdateListEntryPage = () => {
           <Input
             ref={dateWatchedRef}
             borderRadius={20}
-            placeholder={`Date Watched`}
+            placeholder={`Date Watched (YYYY-MM-DD)`}
             variant="filled"
-            defaultValue={data?.date_watched}
+            defaultValue={
+              data?.date_watched != placeholderDate ? data?.date_watched : ""
+            }
           />
         </InputGroup>
         <InputGroup width={"53vw"} marginBottom={"1vw"}>
@@ -109,7 +118,9 @@ const UpdateListEntryPage = () => {
             borderRadius={20}
             placeholder={`Comments`}
             variant="filled"
-            defaultValue={data?.comments}
+            defaultValue={
+              data?.comments != placeholderComments ? data?.comments : ""
+            }
           />
         </InputGroup>
         <Button marginTop={"1vw"} marginRight={2} type="submit">

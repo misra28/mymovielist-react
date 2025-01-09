@@ -7,6 +7,7 @@ import {
   Flex,
   Grid,
   Heading,
+  HStack,
   SimpleGrid,
   Spinner,
 } from "@chakra-ui/react";
@@ -21,6 +22,7 @@ import useGetMovieList from "../hooks/useGetMovieList";
 import getUserInfo from "../services/get-user-info";
 import authService from "../services/auth-service";
 import SortMovieListSelector from "../components/SortMovieListSelector";
+import ListEntrySlab from "../components/ListEntrySlab";
 
 const UserMovieListPage = () => {
   const navigate = useNavigate();
@@ -40,8 +42,19 @@ const UserMovieListPage = () => {
 
   const skeletons = [1, 2, 3, 4, 5, 6, 7, 8, 9];
   const setUsername = useCredentialsQueryStore((s) => s.setUsername);
+  const username = useCredentialsQueryStore((s) => s.credentialsQuery.username);
   const setUserId = useCredentialsQueryStore((s) => s.setUserId);
   const userId = useCredentialsQueryStore((s) => s.credentialsQuery.userId);
+
+  const setListViewExpanded = useCredentialsQueryStore(
+    (s) => s.setListViewType
+  );
+  const listViewExpanded = useCredentialsQueryStore(
+    (s) => s.credentialsQuery.listViewType
+  );
+
+  let colCount = 0;
+  if (listViewExpanded) colCount = 1;
 
   return (
     <>
@@ -52,7 +65,7 @@ const UserMovieListPage = () => {
         justifyContent="center"
         alignItems="center"
       >
-        <Heading marginBottom={"1rem"}>{`View Your MovieList`}</Heading>
+        <Heading marginBottom={"1rem"}>{`${username}'s MovieList`}</Heading>
         <Button
           width="6rem"
           marginBottom={"1rem"}
@@ -81,7 +94,17 @@ const UserMovieListPage = () => {
 
         <Card width={"70%"}>
           <CardBody>
-            <SortMovieListSelector />
+            <HStack>
+              <SortMovieListSelector />
+              <Button
+                backgroundColor={"#121212"}
+                onClick={() => setListViewExpanded(!listViewExpanded)}
+                marginBottom={"1rem"}
+                marginLeft={"0.5rem"}
+              >
+                Toggle Expanded View
+              </Button>
+            </HStack>
             <InfiniteScroll
               dataLength={fetchedResultsCount}
               hasMore={!!hasNextPage}
@@ -89,7 +112,7 @@ const UserMovieListPage = () => {
               loader={<MovieCardSkeleton />}
             >
               <SimpleGrid
-                columns={{ base: 1, md: 1, lg: 2, xl: 2 }}
+                columns={{ base: 1, md: 1, lg: 1 + colCount, xl: 1 + colCount }}
                 spacing={5}
               >
                 {isLoading &&
@@ -100,11 +123,15 @@ const UserMovieListPage = () => {
                   ))}
                 {data?.pages.map((page, index) => (
                   <React.Fragment key={index}>
-                    {page.results.map((le) => (
-                      <CardContainer key={le.id}>
-                        <ListEntryCard listEntry={le} />
-                      </CardContainer>
-                    ))}
+                    {(listViewExpanded &&
+                      page.results.map((le) => (
+                        <CardContainer key={le.id}>
+                          {<ListEntryCard listEntry={le} />}
+                        </CardContainer>
+                      ))) ||
+                      page.results.map((le) => (
+                        <ListEntrySlab listEntry={le} />
+                      ))}
                   </React.Fragment>
                 ))}
               </SimpleGrid>

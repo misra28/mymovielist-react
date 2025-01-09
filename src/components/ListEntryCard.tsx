@@ -16,6 +16,11 @@ import ListEntry from "../entities/ListEntry";
 import formatDate from "../services/date-conversion";
 import axios from "axios";
 import getDjangoEndpoint from "../django-endpoint";
+import {
+  placeholderComments,
+  placeholderDate,
+  placeholderRating,
+} from "../pages/AddListEntryPage";
 
 interface Props {
   listEntry: ListEntry;
@@ -30,11 +35,13 @@ const ListEntryCard = ({ listEntry }: Props) => {
         <CardHeader paddingBottom={0}>
           <Heading fontSize="1.6rem">{listEntry.movie_title}</Heading>
         </CardHeader>
-        <CardBody>
-          <HStack>
-            <Image width={"30%"} src={listEntry.poster_url} marginBottom={2} />
-            <Box marginLeft={"1rem"}>
-              {listEntry.rating && (
+      </Link>
+      <CardBody>
+        <HStack>
+          <Image width={"27%"} src={listEntry.poster_url} marginBottom={2} />
+          <Box marginLeft={"1rem"}>
+            {listEntry.rating &&
+              listEntry.rating != parseInt(placeholderRating) && (
                 <React.Fragment>
                   <Text
                     fontSize="1.3rem"
@@ -45,7 +52,8 @@ const ListEntryCard = ({ listEntry }: Props) => {
                   </Text>
                 </React.Fragment>
               )}
-              {listEntry.date_watched && (
+            {listEntry.date_watched &&
+              listEntry.date_watched != placeholderDate && (
                 <React.Fragment>
                   <Text fontSize="1.3rem" fontWeight={"bold"}>
                     Watched on:
@@ -55,7 +63,8 @@ const ListEntryCard = ({ listEntry }: Props) => {
                   </Text>
                 </React.Fragment>
               )}
-              {listEntry.comments && (
+            {listEntry.comments &&
+              listEntry.comments != placeholderComments && (
                 <React.Fragment>
                   <Text fontSize="1.3rem" fontWeight={"bold"}>
                     Comments:
@@ -65,10 +74,9 @@ const ListEntryCard = ({ listEntry }: Props) => {
                   </Text>
                 </React.Fragment>
               )}
-            </Box>
-          </HStack>
-        </CardBody>
-      </Link>
+          </Box>
+        </HStack>
+      </CardBody>
       <CardFooter>
         <Button
           marginRight={"1rem"}

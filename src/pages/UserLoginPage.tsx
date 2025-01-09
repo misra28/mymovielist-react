@@ -1,6 +1,13 @@
 import React, { useState } from "react";
 import authService from "../services/auth-service";
-import { Box, Button, Heading, Input, InputGroup } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Grid,
+  Heading,
+  Input,
+  InputGroup,
+} from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 
 const UserLoginPage = () => {
@@ -19,7 +26,13 @@ const UserLoginPage = () => {
   };
 
   return (
-    <Box alignItems={"center"} height={"40vw"}>
+    <Grid
+      width="100vw"
+      display="flex"
+      flexDirection="column"
+      justifyContent="center"
+      alignItems="center"
+    >
       <Heading marginBottom={"2vw"}>Log In</Heading>
       <form onSubmit={handleLogin}>
         <InputGroup width={"53vw"} marginBottom={"1vw"}>
@@ -44,7 +57,7 @@ const UserLoginPage = () => {
         </InputGroup>
         <Button type="submit">Login</Button>
       </form>
-    </Box>
+    </Grid>
   );
 };
 
