@@ -6,6 +6,8 @@ interface CredentialsQuery {
     username?: string;
     listSortType?: string;
     listViewType?: boolean;
+    searchType?: string;
+    isAscending?: boolean;
 }
 
 interface CredentialsQueryStore {
@@ -15,6 +17,8 @@ interface CredentialsQueryStore {
     setUsername: (username?: string) => void;
     setListSortType: (listSortType?: string) => void;
     setListViewType: (listViewType?: boolean) => void;
+    setSearchType: (searchType?: string) => void;
+    setIsAscending: (isAscending?: boolean) => void;
 }
 
 const useCredentialsQueryStore = create<CredentialsQueryStore>( set => ({
@@ -24,6 +28,8 @@ const useCredentialsQueryStore = create<CredentialsQueryStore>( set => ({
     setUsername: (username) => set((store) => ({credentialsQuery: {...store.credentialsQuery, username}})),
     setListSortType: (listSortType) => set((store) => ({credentialsQuery: {...store.credentialsQuery, listSortType}})),
     setListViewType: (listViewType) => set((store) => ({credentialsQuery: {...store.credentialsQuery, listViewType}})),
+    setSearchType: (searchType) => set((store) => ({credentialsQuery: {...store.credentialsQuery, searchType}})),
+    setIsAscending: (isAscending) => set((store) => ({credentialsQuery: {...store.credentialsQuery, isAscending}})),
 }))
 
 export default useCredentialsQueryStore;

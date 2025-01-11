@@ -3,14 +3,12 @@ import {
   Button,
   Card,
   CardBody,
-  CardFooter,
-  CardHeader,
+  Grid,
   Heading,
   HStack,
   Image,
   Text,
 } from "@chakra-ui/react";
-import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import ListEntry from "../entities/ListEntry";
 import formatDate from "../services/date-conversion";
@@ -26,6 +24,26 @@ interface Props {
   listEntry: ListEntry;
 }
 
+const deleteEntry = async (accessToken: string, listEntry: ListEntry) => {
+  const instance = axios.create({
+    baseURL: getDjangoEndpoint(),
+    headers: {
+      accept: "application/json",
+      Authorization: `JWT ${accessToken}`,
+    },
+  });
+  try {
+    await instance
+      .delete<ListEntry>(
+        `${getDjangoEndpoint()}movielist/list-entries/${listEntry?.id}/`
+      )
+      .then((res) => res.data);
+    window.location.reload();
+  } catch (e) {
+    console.log(`Failed to delete '${listEntry?.movie_title}'!`, e);
+  }
+};
+
 const ListEntrySlab = ({ listEntry }: Props) => {
   const navigate = useNavigate();
   const accessToken = localStorage.getItem("access_token")!;
@@ -37,77 +55,60 @@ const ListEntrySlab = ({ listEntry }: Props) => {
   return (
     <Card variant={"elevated"} bgColor="#121212" borderRadius={10}>
       <CardBody>
-        <HStack>
+        <HStack align="flex-start">
           <Image width={"3.3rem"} src={listEntry.poster_url} marginBottom={1} />
-          <Box>
+          <Box flex={1}>
             <Link to={`/movies/${listEntry.movie_id}`}>
               <Heading fontSize="1.3rem" marginBottom={"0.25rem"}>
                 {listEntry.movie_title}
               </Heading>
             </Link>
-            <HStack gap={"1rem"} justify={"space-between"}>
+            <Grid
+              templateColumns={"1fr 2fr 3fr auto auto"}
+              gap={4}
+              alignItems="center"
+              marginTop="0.5rem"
+            >
               {listEntry.rating &&
                 listEntry.rating != parseInt(placeholderRating) && (
-                  <React.Fragment>
-                    <Text fontSize="1rem" width={"15%"} fontWeight={"bold"}>
-                      {`Rating: ${listEntry.rating}`}
-                    </Text>
-                  </React.Fragment>
+                  <Text fontSize="1rem" fontWeight="bold" textAlign="left">
+                    {`Rating: ${listEntry.rating}`}
+                  </Text>
                 )}
               {listEntry.date_watched &&
                 listEntry.date_watched != placeholderDate && (
-                  <React.Fragment>
-                    <Text fontSize="1rem" width={"35%"} fontWeight={"bold"}>
-                      {`Watched on: ${formatDate(listEntry.date_watched)}`}
-                    </Text>
-                  </React.Fragment>
+                  <Text fontSize="1rem" fontWeight="bold" textAlign="left">
+                    {`Watched on: ${formatDate(listEntry.date_watched)}`}
+                  </Text>
                 )}
               {listEntry.comments &&
                 listEntry.comments != placeholderComments && (
-                  <React.Fragment>
-                    <Text fontSize="1rem" width={"30%"} fontWeight={"bold"}>
-                      {`Comments: ${comments}`}
-                    </Text>
-                  </React.Fragment>
+                  <Text
+                    fontSize="1rem"
+                    textAlign="left"
+                    whiteSpace="pre-wrap"
+                    overflowWrap="break-word"
+                    maxWidth="100%"
+                    fontStyle={"italic"}
+                  >
+                    {`${comments}`}
+                  </Text>
                 )}
-
               <Button
                 marginRight={"1rem"}
-                width={"10%"}
                 onClick={() => navigate(`/user/${listEntry.id}`)}
               >
                 Update Info
               </Button>
               <Button
-                width={"15%"}
+                colorScheme="gray"
                 onClick={async () => {
-                  const instance = axios.create({
-                    baseURL: getDjangoEndpoint(),
-                    headers: {
-                      accept: "application/json",
-                      Authorization: `JWT ${accessToken}`,
-                    },
-                  });
-                  try {
-                    await instance
-                      .delete<ListEntry>(
-                        `${getDjangoEndpoint()}movielist/list-entries/${
-                          listEntry?.id
-                        }/`
-                      )
-                      .then((res) => res.data);
-                    window.location.reload();
-                  } catch (e) {
-                    console.log(
-                      `Failed to delete '${listEntry?.movie_title}'!`,
-                      e
-                    );
-                  }
+                  deleteEntry(accessToken, listEntry);
                 }}
               >
                 Remove From List
               </Button>
-            </HStack>
+            </Grid>
           </Box>
         </HStack>
       </CardBody>

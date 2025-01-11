@@ -13,8 +13,14 @@ import useCredentialsQueryStore from "../credentialsStore";
 const SortMovieListSelector = () => {
   const searchTypes = ["movie_title", "date_watched", "rating"];
   const dirs = ["Ascending", "Descending"];
-  const [searchType, setSearchType] = useState(searchTypes[0]);
-  const [isAscending, setIsAscending] = useState(true);
+  const searchType = useCredentialsQueryStore(
+    (s) => s.credentialsQuery.searchType
+  );
+  const setSearchType = useCredentialsQueryStore((s) => s.setSearchType);
+  const isAscending = useCredentialsQueryStore(
+    (s) => s.credentialsQuery.isAscending
+  );
+  const setIsAscending = useCredentialsQueryStore((s) => s.setIsAscending);
   const setListSortType = useCredentialsQueryStore((s) => s.setListSortType);
 
   const sortType = isAscending ? searchType : `-${searchType}`;
@@ -22,6 +28,14 @@ const SortMovieListSelector = () => {
   useEffect(() => {
     setListSortType(sortType);
   }, [sortType, setListSortType]);
+
+  // useEffect(() => {
+  //   setSearchType(searchTypes[0]);
+  // }, [searchType, setSearchType]);
+
+  // useEffect(() => {
+  //   setIsAscending(isAscending);
+  // }, [isAscending, setIsAscending]);
 
   return (
     <>

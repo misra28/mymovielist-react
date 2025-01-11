@@ -16,6 +16,7 @@ import MovieCreditsCard from "../components/MovieCreditsCard";
 import MovieVideo from "../components/MovieVideo";
 import useCredentialsQueryStore from "../credentialsStore";
 import AddListEntryButton from "../components/AddListEntryButton";
+import { useEffect } from "react";
 
 const MovieDetailPage = () => {
   const { movie_id } = useParams();
