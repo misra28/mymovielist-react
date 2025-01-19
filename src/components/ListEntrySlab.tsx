@@ -22,6 +22,7 @@ import {
 
 interface Props {
   listEntry: ListEntry;
+  consolidated?: boolean;
 }
 
 const deleteEntry = async (accessToken: string, listEntry: ListEntry) => {
@@ -44,7 +45,7 @@ const deleteEntry = async (accessToken: string, listEntry: ListEntry) => {
   }
 };
 
-const ListEntrySlab = ({ listEntry }: Props) => {
+const ListEntrySlab = ({ listEntry, consolidated }: Props) => {
   const navigate = useNavigate();
   const accessToken = localStorage.getItem("access_token")!;
 
@@ -64,25 +65,26 @@ const ListEntrySlab = ({ listEntry }: Props) => {
               </Heading>
             </Link>
             <Grid
-              templateColumns={"1fr 2fr 3fr auto auto"}
+              templateColumns={!consolidated ? "1fr 2fr 3fr auto auto" : "2fr"}
               gap={4}
               alignItems="center"
               marginTop="0.5rem"
             >
-              {listEntry.rating &&
+              {(listEntry.rating &&
                 listEntry.rating != parseInt(placeholderRating) && (
                   <Text fontSize="1rem" fontWeight="bold" textAlign="left">
                     {`Rating: ${listEntry.rating}`}
                   </Text>
-                )}
-              {listEntry.date_watched &&
+                )) || <Text></Text>}
+              {(listEntry.date_watched &&
                 listEntry.date_watched != placeholderDate && (
                   <Text fontSize="1rem" fontWeight="bold" textAlign="left">
                     {`Watched on: ${formatDate(listEntry.date_watched)}`}
                   </Text>
-                )}
-              {listEntry.comments &&
-                listEntry.comments != placeholderComments && (
+                )) || <Text></Text>}
+              {(listEntry.comments &&
+                listEntry.comments != placeholderComments &&
+                !consolidated && (
                   <Text
                     fontSize="1rem"
                     textAlign="left"
@@ -93,21 +95,25 @@ const ListEntrySlab = ({ listEntry }: Props) => {
                   >
                     {`${comments}`}
                   </Text>
-                )}
-              <Button
-                marginRight={"1rem"}
-                onClick={() => navigate(`/user/${listEntry.id}`)}
-              >
-                Update Info
-              </Button>
-              <Button
-                colorScheme="gray"
-                onClick={async () => {
-                  deleteEntry(accessToken, listEntry);
-                }}
-              >
-                Remove From List
-              </Button>
+                )) || <Text></Text>}
+              {!consolidated && (
+                <Button
+                  marginRight={"1rem"}
+                  onClick={() => navigate(`/user/${listEntry.id}`)}
+                >
+                  Update Info
+                </Button>
+              )}
+              {!consolidated && (
+                <Button
+                  colorScheme="gray"
+                  onClick={async () => {
+                    deleteEntry(accessToken, listEntry);
+                  }}
+                >
+                  Remove From List
+                </Button>
+              )}
             </Grid>
           </Box>
         </HStack>

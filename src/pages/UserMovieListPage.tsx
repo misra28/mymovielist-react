@@ -49,12 +49,17 @@ const UserMovieListPage = () => {
   const setListViewExpanded = useCredentialsQueryStore(
     (s) => s.setListViewType
   );
+  const setListSortType = useCredentialsQueryStore((s) => s.setListSortType);
   const listViewExpanded = useCredentialsQueryStore(
     (s) => s.credentialsQuery.listViewType
   );
 
   let colCount = 0;
   if (listViewExpanded) colCount = 1;
+
+  // useEffect(() => {
+  //   setListSortType(listSortType);
+  // }, [listSortType, setListSortType]);
 
   return (
     <>
@@ -65,7 +70,9 @@ const UserMovieListPage = () => {
         justifyContent="center"
         alignItems="center"
       >
-        <Heading marginBottom={"1rem"}>{`${username}'s MovieList`}</Heading>
+        {username && (
+          <Heading marginBottom={"1rem"}>{`${username}'s MovieList`}</Heading>
+        )}
         <Button
           width="6rem"
           marginBottom={"1rem"}
@@ -105,37 +112,44 @@ const UserMovieListPage = () => {
                 Toggle Expanded View
               </Button>
             </HStack>
-            <InfiniteScroll
-              dataLength={fetchedResultsCount}
-              hasMore={!!hasNextPage}
-              next={() => fetchNextPage()}
-              loader={<MovieCardSkeleton />}
-            >
-              <SimpleGrid
-                columns={{ base: 1, md: 1, lg: 1 + colCount, xl: 1 + colCount }}
-                spacing={5}
+            {listSortType != "-undefined" && (
+              <InfiniteScroll
+                dataLength={fetchedResultsCount}
+                hasMore={!!hasNextPage}
+                next={() => fetchNextPage()}
+                loader={<MovieCardSkeleton />}
               >
-                {isLoading &&
-                  skeletons.map((skeleton) => (
-                    <CardContainer key={skeleton}>
-                      <MovieCardSkeleton />
-                    </CardContainer>
+                <SimpleGrid
+                  columns={{
+                    base: 1,
+                    md: 1,
+                    lg: 1 + colCount,
+                    xl: 1 + colCount,
+                  }}
+                  spacing={5}
+                >
+                  {isLoading &&
+                    skeletons.map((skeleton) => (
+                      <CardContainer key={skeleton}>
+                        <MovieCardSkeleton />
+                      </CardContainer>
+                    ))}
+                  {data?.pages.map((page, index) => (
+                    <React.Fragment key={index}>
+                      {(listViewExpanded &&
+                        page.results.map((le) => (
+                          <CardContainer key={le.id}>
+                            {<ListEntryCard listEntry={le} />}
+                          </CardContainer>
+                        ))) ||
+                        page.results.map((le) => (
+                          <ListEntrySlab listEntry={le} />
+                        ))}
+                    </React.Fragment>
                   ))}
-                {data?.pages.map((page, index) => (
-                  <React.Fragment key={index}>
-                    {(listViewExpanded &&
-                      page.results.map((le) => (
-                        <CardContainer key={le.id}>
-                          {<ListEntryCard listEntry={le} />}
-                        </CardContainer>
-                      ))) ||
-                      page.results.map((le) => (
-                        <ListEntrySlab listEntry={le} />
-                      ))}
-                  </React.Fragment>
-                ))}
-              </SimpleGrid>
-            </InfiniteScroll>
+                </SimpleGrid>
+              </InfiniteScroll>
+            )}
           </CardBody>
         </Card>
       </Grid>

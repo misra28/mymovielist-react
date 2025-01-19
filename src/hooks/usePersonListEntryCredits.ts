@@ -2,13 +2,13 @@ import React from 'react'
 import useCredentialsQueryStore from '../credentialsStore';
 import axios from 'axios';
 import getDjangoEndpoint from '../django-endpoint';
+import ListEntry from '../entities/ListEntry';
 import { useQuery } from '@tanstack/react-query';
-import EntryID from '../entities/EntryID';
 
-const useEntryIDs = () => {
+const usePersonListEntryCredits = (person_id: string) => {
     const accessToken = localStorage.getItem("access_token")!;
 
-    const userId = useCredentialsQueryStore(
+      const userId = useCredentialsQueryStore(
         (s) => s.credentialsQuery.userId
       );
 
@@ -21,13 +21,13 @@ const useEntryIDs = () => {
       });
     
       const getEntry = () => instance
-          .get<EntryID[]>(`movielist/entry-ids`, { params: { format: "json" } })
+          .get<ListEntry[]>(`movielist/person-credits/`, { params: { format: "json", person_id: person_id } })
           .then((res) => res.data);
       
       return useQuery({
-        queryKey: ['entryIDs', userId],
+        queryKey: ['personListEntryCredits', userId, person_id],
         queryFn: getEntry
       })
 }
 
-export default useEntryIDs;
+export default usePersonListEntryCredits;

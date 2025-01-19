@@ -20,7 +20,11 @@ const PersonProfileGrid = ({ person_id }: Props) => {
         <SimpleGrid columns={{ base: 2, md: 3, lg: 4, xl: 4 }} spacing={2}>
           {profiles?.profiles
             .map((p) => (
-              <Image alt={p.file_path} src={getImage(p.file_path)}></Image>
+              <Image
+                key={p.file_path}
+                alt={p.file_path}
+                src={getImage(p.file_path)}
+              ></Image>
             ))
             .slice(0, 4)}
         </SimpleGrid>

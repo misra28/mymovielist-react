@@ -23,6 +23,10 @@ const SortMovieListSelector = () => {
   const setIsAscending = useCredentialsQueryStore((s) => s.setIsAscending);
   const setListSortType = useCredentialsQueryStore((s) => s.setListSortType);
 
+  useEffect(() => {
+    setSearchType(searchTypes[1]);
+  }, []);
+
   const sortType = isAscending ? searchType : `-${searchType}`;
 
   useEffect(() => {

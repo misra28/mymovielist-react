@@ -6,6 +6,7 @@ import PersonProfileGrid from "../components/PersonProfileGrid";
 import PersonAttributesCard from "../components/PersonAttributesCard";
 import PersonCreditsGrid from "../components/PersonCreditsGrid";
 import PersonKnownFor from "../components/PersonKnownFor";
+import PersonListEntryGrid from "../components/PersonListEntryGrid";
 
 const PersonDetailPage = () => {
   const { person_id } = useParams();
@@ -30,6 +31,7 @@ const PersonDetailPage = () => {
         </GridItem>
       </SimpleGrid>
       <PersonAttributesCard person={person!} />
+      <PersonListEntryGrid person_id={person_id!} />
       <PersonKnownFor person_id={person_id!} />
       <PersonCreditsGrid person_id={person_id!} type={"cast"} />
       <PersonCreditsGrid person_id={person_id!} type={"crew"} />

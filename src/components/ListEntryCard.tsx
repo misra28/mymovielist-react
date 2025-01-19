@@ -101,7 +101,7 @@ const ListEntryCard = ({ listEntry }: Props) => {
                   }/`
                 )
                 .then((res) => res.data);
-              window.location.reload();
+              // window.location.reload();
             } catch (e) {
               console.log(`Failed to delete '${listEntry?.movie_title}'!`, e);
             }
