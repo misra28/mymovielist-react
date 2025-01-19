@@ -28,7 +28,7 @@ const PersonListEntryGrid = ({ person_id }: Props) => {
   const isAuthenticated = !!localStorage.getItem("access_token");
   const [isExpanded, setIsExpanded] = useState(false);
 
-  if (!credits || !isAuthenticated) return null;
+  if (!credits || credits.length == 0 || !isAuthenticated) return null;
   credits.sort((a, b) => b.rating - a.rating);
 
   const creditLength = credits.length;
