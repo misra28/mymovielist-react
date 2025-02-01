@@ -24,22 +24,23 @@ const SortMovieListSelector = () => {
   const setListSortType = useCredentialsQueryStore((s) => s.setListSortType);
 
   useEffect(() => {
-    setSearchType(searchTypes[1]);
+    setSearchType(searchType || searchTypes[1]);
   }, []);
 
   const sortType = isAscending ? searchType : `-${searchType}`;
 
+  // useEffect(() => {
+  //   const storedSearchType = localStorage.getItem("searchType");
+  //   const storedIsAscending = localStorage.getItem("isAscending");
+
+  //   if (storedSearchType) setSearchType(storedSearchType);
+  //   if (storedIsAscending !== null)
+  //     setIsAscending(storedIsAscending === "true");
+  // }, []);
+
   useEffect(() => {
     setListSortType(sortType);
   }, [sortType, setListSortType]);
-
-  // useEffect(() => {
-  //   setSearchType(searchTypes[0]);
-  // }, [searchType, setSearchType]);
-
-  // useEffect(() => {
-  //   setIsAscending(isAscending);
-  // }, [isAscending, setIsAscending]);
 
   return (
     <>
