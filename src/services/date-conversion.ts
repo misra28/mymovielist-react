@@ -21,4 +21,16 @@ const formatDate = (date: string) => {
   return `${months[parseInt(month) - 1]} ${parseInt(day)}, ${year}`;
 }
 
+export const dateStringDifference = (a: string, b: string) => {
+  const dateA = new Date(a);
+  const dateB = new Date(b);
+
+  dateA.setHours(0, 0, 0, 0);
+  dateB.setHours(0, 0, 0, 0);
+  
+  if (dateA < dateB) {
+    return -1;
+  } else return 1;
+}
+
 export default formatDate;

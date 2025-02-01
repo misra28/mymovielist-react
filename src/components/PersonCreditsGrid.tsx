@@ -13,6 +13,7 @@ import MovieCardSkeleton from "./MovieCardSkeleton";
 import usePersonCredits from "../hooks/usePersonCredits";
 import MovieCard from "./MovieCard";
 import { consolidateMovieArray } from "../services/consolidate-object-array";
+import { dateStringDifference } from "../services/date-conversion";
 
 interface Props {
   person_id: string;
@@ -32,6 +33,16 @@ const PersonCreditsGrid = ({ person_id, type }: Props) => {
 
   credits = type === "cast" ? credits : consolidateMovieArray(credits, type)!;
   if (!credits) return null;
+
+  credits.sort((a, b) =>
+    dateStringDifference(b.release_date!, a.release_date!)
+  );
+  const today = new Date().toISOString().split("T")[0];
+  const dateToday = new Date(today);
+  const upcomingCredits = credits.filter(
+    (c) => new Date(c.release_date!) > dateToday
+  );
+  credits = credits.filter((c) => new Date(c.release_date!) <= dateToday);
 
   return (
     <Card marginTop={5}>
@@ -53,6 +64,16 @@ const PersonCreditsGrid = ({ person_id, type }: Props) => {
               </CardContainer>
             ))}
           {credits.map((movie) => (
+            <React.Fragment key={movie.id}>
+              <CardContainer key={movie.id}>
+                <MovieCard
+                  movie={movie}
+                  association={type === "crew" ? movie.job : movie.character}
+                ></MovieCard>
+              </CardContainer>
+            </React.Fragment>
+          ))}
+          {upcomingCredits.map((movie) => (
             <React.Fragment key={movie.id}>
               <CardContainer key={movie.id}>
                 <MovieCard
