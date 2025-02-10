@@ -19,6 +19,7 @@ import {
   placeholderDate,
   placeholderRating,
 } from "../pages/AddListEntryPage";
+import ExpandableText from "./ExpandableText";
 
 interface Props {
   listEntry: ListEntry;
@@ -49,15 +50,23 @@ const ListEntrySlab = ({ listEntry, consolidated }: Props) => {
   const navigate = useNavigate();
   const accessToken = localStorage.getItem("access_token")!;
 
-  const sub = listEntry.comments?.substring(0, 80);
+  const sub = listEntry.comments;
   const comments =
     listEntry?.comments != sub ? sub + "..." : listEntry?.comments;
+
+  let imgWidth = "3.3rem";
+  let textSpacing = 4;
+
+  if (consolidated) {
+    imgWidth = "4rem";
+    textSpacing = 2;
+  }
 
   return (
     <Card variant={"elevated"} bgColor="#121212" borderRadius={10}>
       <CardBody>
         <HStack align="flex-start">
-          <Image width={"3.3rem"} src={listEntry.poster_url} marginBottom={1} />
+          <Image width={imgWidth} src={listEntry.poster_url} marginBottom={1} />
           <Box flex={1}>
             <Link to={`/movies/${listEntry.movie_id}`}>
               <Heading fontSize="1.3rem" marginBottom={"0.25rem"}>
@@ -66,7 +75,7 @@ const ListEntrySlab = ({ listEntry, consolidated }: Props) => {
             </Link>
             <Grid
               templateColumns={!consolidated ? "1fr 2fr 3fr auto auto" : "2fr"}
-              gap={4}
+              gap={textSpacing}
               alignItems="center"
               marginTop="0.5rem"
             >
@@ -93,7 +102,7 @@ const ListEntrySlab = ({ listEntry, consolidated }: Props) => {
                     maxWidth="100%"
                     fontStyle={"italic"}
                   >
-                    {`${comments}`}
+                    <ExpandableText limit={80}>{`${comments}`}</ExpandableText>
                   </Text>
                 )) || <Text></Text>}
               {!consolidated && (

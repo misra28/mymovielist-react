@@ -17,6 +17,7 @@ import { consolidateMovieArray } from "../services/consolidate-object-array";
 import usePersonListEntryCredits from "../hooks/usePersonListEntryCredits";
 import ListEntrySlab from "./ListEntrySlab";
 import ListEntryCard from "./ListEntryCard";
+import { dateStringDifference } from "../services/date-conversion";
 
 interface Props {
   person_id: string;
@@ -27,9 +28,15 @@ const PersonListEntryGrid = ({ person_id }: Props) => {
   const skeletons = [1, 2, 3, 4, 5, 6, 7, 8, 9];
   const isAuthenticated = !!localStorage.getItem("access_token");
   const [isExpanded, setIsExpanded] = useState(false);
+  const [sortByRating, setSortByRating] = useState(true);
 
   if (!credits || credits.length == 0 || !isAuthenticated) return null;
-  credits.sort((a, b) => b.rating - a.rating);
+
+  if (sortByRating) credits.sort((a, b) => b.rating - a.rating);
+  else
+    credits.sort((a, b) =>
+      dateStringDifference(b.date_watched, a.date_watched)
+    );
 
   const creditLength = credits.length;
   if (!isExpanded) credits = credits.slice(0, 3);
@@ -38,6 +45,13 @@ const PersonListEntryGrid = ({ person_id }: Props) => {
     <Card marginTop={5}>
       <CardHeader>
         <Heading marginLeft={3}>{"Credits In Your List"}</Heading>
+        <Button
+          marginLeft={3}
+          marginTop={5}
+          onClick={() => setSortByRating(!sortByRating)}
+        >
+          {sortByRating ? "Sort by Date Watched" : "Sort by Rating"}
+        </Button>
         {creditLength > 3 && (
           <Button
             marginLeft={3}
