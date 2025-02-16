@@ -6,6 +6,7 @@ import {
   InputGroup,
   FormLabel,
   Spinner,
+  Textarea,
 } from "@chakra-ui/react";
 import React, { useRef } from "react";
 import { useNavigate, useParams } from "react-router-dom";
@@ -25,7 +26,7 @@ const UpdateListEntryPage = () => {
 
   const ratingRef = useRef<HTMLInputElement>(null);
   const dateWatchedRef = useRef<HTMLInputElement>(null);
-  const commentsRef = useRef<HTMLInputElement>(null);
+  const commentsRef = useRef<HTMLTextAreaElement>(null);
 
   const navigate = useNavigate();
   const accessToken = localStorage.getItem("access_token")!;
@@ -113,7 +114,7 @@ const UpdateListEntryPage = () => {
           <FormLabel marginTop={"0.4rem"} fontSize={"1.2rem"}>
             Comments:{" "}
           </FormLabel>
-          <Input
+          <Textarea
             ref={commentsRef}
             borderRadius={20}
             placeholder={`Comments`}
