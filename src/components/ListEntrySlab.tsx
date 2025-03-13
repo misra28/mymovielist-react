@@ -5,9 +5,10 @@ import {
   CardBody,
   Grid,
   Heading,
-  HStack,
+  VStack,
   Image,
   Text,
+  HStack,
 } from "@chakra-ui/react";
 import { Link, useNavigate } from "react-router-dom";
 import ListEntry from "../entities/ListEntry";
@@ -35,11 +36,9 @@ const deleteEntry = async (accessToken: string, listEntry: ListEntry) => {
     },
   });
   try {
-    await instance
-      .delete<ListEntry>(
-        `${getDjangoEndpoint()}movielist/list-entries/${listEntry?.id}/`
-      )
-      .then((res) => res.data);
+    await instance.delete<ListEntry>(
+      `${getDjangoEndpoint()}movielist/list-entries/${listEntry?.id}/`
+    );
     window.location.reload();
   } catch (e) {
     console.log(`Failed to delete '${listEntry?.movie_title}'!`, e);
@@ -52,76 +51,97 @@ const ListEntrySlab = ({ listEntry, consolidated }: Props) => {
 
   const sub = listEntry.comments;
   const comments =
-    listEntry?.comments != sub ? sub + "..." : listEntry?.comments;
-
-  let imgWidth = "3.3rem";
-  let textSpacing = 4;
-
-  if (consolidated) {
-    imgWidth = "4rem";
-    textSpacing = 2;
-  }
+    listEntry?.comments !== sub ? sub + "..." : listEntry?.comments;
 
   return (
-    <Card variant={"elevated"} bgColor="#121212" borderRadius={10}>
+    <Card
+      variant="elevated"
+      bgColor="#121212"
+      borderRadius={10}
+      width="100%"
+      // padding={4}
+    >
       <CardBody>
-        <HStack align="flex-start">
-          <Image width={imgWidth} src={listEntry.poster_url} marginBottom={1} />
-          <Box flex={1}>
+        <HStack align="flex-start" spacing={5} width="100%">
+          {/* Movie Poster */}
+          <Image
+            width={{ base: "4rem", md: "5rem" }}
+            src={listEntry.poster_url}
+            borderRadius="md"
+          />
+
+          {/* Movie Details & Buttons */}
+          <Box flexGrow={1}>
+            {/* Movie Title */}
             <Link to={`/movies/${listEntry.movie_id}`}>
-              <Heading fontSize="1.3rem" marginBottom={"0.25rem"}>
+              <Heading
+                fontSize={{ base: "1.2rem", md: "1.5rem" }}
+                marginBottom="0.25rem"
+              >
                 {listEntry.movie_title}
               </Heading>
             </Link>
+
+            {/* Grid for Details & Buttons */}
             <Grid
-              templateColumns={!consolidated ? "1fr 2fr 3fr auto auto" : "2fr"}
-              gap={textSpacing}
+              templateColumns={{
+                base: "1fr", // Stack on small screens
+                lg: !consolidated ? "1fr 2fr 3fr auto" : "2fr", // Align properly when not consolidated
+              }}
+              gap={4}
               alignItems="center"
-              marginTop="0.5rem"
+              width="100%"
             >
-              {(listEntry.rating &&
-                listEntry.rating != parseInt(placeholderRating) && (
-                  <Text fontSize="1rem" fontWeight="bold" textAlign="left">
-                    {`Rating: ${listEntry.rating}`}
-                  </Text>
-                )) || <Text></Text>}
-              {(listEntry.date_watched &&
-                listEntry.date_watched != placeholderDate && (
-                  <Text fontSize="1rem" fontWeight="bold" textAlign="left">
-                    {`Watched on: ${formatDate(listEntry.date_watched)}`}
-                  </Text>
-                )) || <Text></Text>}
-              {(listEntry.comments &&
-                listEntry.comments != placeholderComments &&
-                !consolidated && (
-                  <Text
-                    fontSize="1rem"
-                    textAlign="left"
-                    whiteSpace="pre-wrap"
-                    overflowWrap="break-word"
-                    maxWidth="100%"
-                    fontStyle={"italic"}
-                  >
-                    <ExpandableText limit={80}>{`${comments}`}</ExpandableText>
-                  </Text>
-                )) || <Text></Text>}
-              {!consolidated && (
-                <Button
-                  marginRight={"1rem"}
-                  onClick={() => navigate(`/user/${listEntry.id}`)}
-                >
-                  Update Info
-                </Button>
+              {/* Rating */}
+              {listEntry.rating &&
+              listEntry.rating !== parseInt(placeholderRating) ? (
+                <Text fontSize="1rem" fontWeight="bold">
+                  Rating: {listEntry.rating}
+                </Text>
+              ) : (
+                <Text></Text>
               )}
-              {!consolidated && (
-                <Button
-                  colorScheme="gray"
-                  onClick={async () => {
-                    deleteEntry(accessToken, listEntry);
-                  }}
+
+              {/* Watched Date */}
+              {listEntry.date_watched &&
+              listEntry.date_watched !== placeholderDate ? (
+                <Text fontSize="1rem" fontWeight="bold">
+                  Watched on: {formatDate(listEntry.date_watched)}
+                </Text>
+              ) : (
+                <Text></Text>
+              )}
+
+              {/* Comments */}
+              {listEntry.comments &&
+              listEntry.comments !== placeholderComments &&
+              !consolidated ? (
+                <Text
+                  fontSize="1rem"
+                  whiteSpace="pre-wrap"
+                  overflowWrap="break-word"
+                  maxWidth="100%"
+                  fontStyle="italic"
                 >
-                  Remove From List
-                </Button>
+                  <ExpandableText limit={80}>{`${comments}`}</ExpandableText>
+                </Text>
+              ) : (
+                <Text></Text>
+              )}
+
+              {/* Buttons (Right-Aligned) */}
+              {!consolidated && (
+                <HStack justifySelf="end">
+                  <Button onClick={() => navigate(`/user/${listEntry.id}`)}>
+                    Update Info
+                  </Button>
+                  <Button
+                    colorScheme="gray"
+                    onClick={() => deleteEntry(accessToken, listEntry)}
+                  >
+                    Remove From List
+                  </Button>
+                </HStack>
               )}
             </Grid>
           </Box>

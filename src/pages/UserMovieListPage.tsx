@@ -23,6 +23,7 @@ import getUserInfo from "../services/get-user-info";
 import authService from "../services/auth-service";
 import SortMovieListSelector from "../components/SortMovieListSelector";
 import ListEntrySlab from "../components/ListEntrySlab";
+import UserBioPanel from "../components/UserBioPanel";
 
 const UserMovieListPage = () => {
   const navigate = useNavigate();
@@ -64,7 +65,9 @@ const UserMovieListPage = () => {
   return (
     <>
       <Grid
-        width="100vw"
+        width="100%"
+        maxWidth="100vw"
+        px={{ base: 2, md: 4 }} // Padding for better spacing
         display="flex"
         flexDirection="column"
         justifyContent="center"
@@ -74,9 +77,8 @@ const UserMovieListPage = () => {
           <Heading marginBottom={"1rem"}>{`${username}'s MovieList`}</Heading>
         )}
         <Button
-          width="6rem"
+          width={{ base: "100%", sm: "8rem" }} // Full width on mobile
           marginBottom={"1rem"}
-          marginRight={"1rem"}
           onClick={() => {
             authService.logout();
             setUsername();
@@ -86,6 +88,7 @@ const UserMovieListPage = () => {
         >
           Log Out
         </Button>
+        <UserBioPanel />
         {/* <Button
           color={"red"}
           marginBottom={"1rem"}
@@ -99,15 +102,15 @@ const UserMovieListPage = () => {
           Delete Account
         </Button> */}
 
-        <Card width={"70%"}>
+        <Card width={{ base: "90%", md: "80%", lg: "70%" }}>
           <CardBody>
-            <HStack>
+            <HStack flexDirection={{ base: "column", md: "row" }} spacing={2}>
               <SortMovieListSelector />
               <Button
                 backgroundColor={"#121212"}
                 onClick={() => setListViewExpanded(!listViewExpanded)}
                 marginBottom={"1rem"}
-                marginLeft={"0.5rem"}
+                // marginLeft={"0.5rem"}
               >
                 Toggle Expanded View
               </Button>
@@ -122,8 +125,9 @@ const UserMovieListPage = () => {
                 <SimpleGrid
                   columns={{
                     base: 1,
+                    sm: 1,
                     md: 1,
-                    lg: 1 + colCount,
+                    lg: 1,
                     xl: 1 + colCount,
                   }}
                   spacing={5}

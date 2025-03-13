@@ -52,6 +52,13 @@ class DjangoClient {
         return djangoAxiosInstance().post<User>(this.endpoint, config).then(res => res.data);
     }
 
+    getBio = (config: AxiosRequestConfig) => {
+        return djangoAxiosInstance().get<User>(this.endpoint, config).then(res => res.data);
+    }
+
+    postBio = (config: AxiosRequestConfig) => {
+        return djangoAxiosInstance().post<User>(this.endpoint, config).then(res => res.data);
+    }
 }
 
 export default DjangoClient;
