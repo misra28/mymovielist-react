@@ -65,7 +65,7 @@ const ListEntrySlab = ({ listEntry, consolidated }: Props) => {
         <HStack align="flex-start" spacing={5} width="100%">
           {/* Movie Poster */}
           <Image
-            width={{ base: "4rem", md: "5rem" }}
+            width={{ base: "4rem", md: "4.2rem" }}
             src={listEntry.poster_url}
             borderRadius="md"
           />
