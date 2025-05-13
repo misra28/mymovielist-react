@@ -2,7 +2,14 @@
 import React from "react";
 import { FetchFavFilmsOfPerson } from "../../services/django-api-client";
 import useListEntry from "../../hooks/useListEntry";
-import { Box, IconButton, Image, Spinner } from "@chakra-ui/react";
+import {
+  Box,
+  IconButton,
+  Image,
+  LinkBox,
+  LinkOverlay,
+  Spinner,
+} from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import { BsX } from "react-icons/bs";
 import axios from "axios";
@@ -12,7 +19,9 @@ interface Props {
   entry: FetchFavFilmsOfPerson;
 }
 
-const deleteFavFilmOfPersonEntry = async (favEntry: FetchFavFilmsOfPerson) => {
+export const deleteFavFilmOfPersonEntry = async (
+  favEntry: FetchFavFilmsOfPerson
+) => {
   const accessToken = localStorage.getItem("access_token");
   const instance = axios.create({
     baseURL: getDjangoEndpoint(),
@@ -52,18 +61,23 @@ const FavFilmEntry = ({ entry }: Props) => {
     <Box
       position="relative"
       width="100px"
-      marginBottom={"1rem"}
+      height="150px"
       borderRadius="md"
       overflow="hidden"
+      role="group" // enables _groupHover for children
     >
-      <Link to={`/movies/${data?.movie_id}`}>
-        <Image
-          src={data?.poster_url}
-          width="100%"
-          height="100%"
-          objectFit="cover"
-        />
-      </Link>
+      <LinkBox as="article" width="100%" height="100%">
+        <LinkOverlay as={Link} to={`/movies/${data.movie_id}`}>
+          <Image
+            src={data.poster_url}
+            width="100%"
+            height="100%"
+            objectFit="cover"
+            borderRadius="md"
+          />
+        </LinkOverlay>
+      </LinkBox>
+
       <IconButton
         icon={<BsX />}
         aria-label="Remove"
@@ -74,8 +88,10 @@ const FavFilmEntry = ({ entry }: Props) => {
         variant="ghost"
         color="white"
         bg="rgba(0, 0, 0, 0.5)"
-        _hover={{ bg: "rgba(0, 0, 0, 0.7)" }}
         onClick={() => deleteFavFilmOfPersonEntry(entry)}
+        opacity={0}
+        _groupHover={{ opacity: 1 }}
+        transition="opacity 0.2s"
       />
     </Box>
   );
