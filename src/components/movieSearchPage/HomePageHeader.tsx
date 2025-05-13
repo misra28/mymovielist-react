@@ -1,6 +1,6 @@
 import { Heading } from "@chakra-ui/react";
-import useMovieQueryStore from "../movieStore";
-import useGenre from "../hooks/useGenre";
+import useMovieQueryStore from "../../movieStore";
+import useGenre from "../../hooks/useGenre";
 
 const HomePageHeader = () => {
   const { searchType, searchText, primaryReleaseYear, genreId } =
@@ -9,7 +9,9 @@ const HomePageHeader = () => {
 
   if (searchType === "Person") {
     if (!searchText) {
-      return <Heading marginBottom={5}>{`Popular Actors`}</Heading>;
+      return (
+        <Heading marginBottom={5}>{`Popular Actors & Filmmakers`}</Heading>
+      );
     }
     return (
       <Heading marginBottom={5}>{`Search Results for '${searchText}'`}</Heading>

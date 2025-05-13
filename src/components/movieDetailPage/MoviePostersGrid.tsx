@@ -1,6 +1,6 @@
 import { SimpleGrid, Image, Spinner, CardBody, Card } from "@chakra-ui/react";
-import useMoviePosters from "../hooks/useMoviePosters";
-import getImage from "../services/backdrop-url";
+import useMoviePosters from "../../hooks/useMoviePosters";
+import getImage from "../../services/backdrop-url";
 
 interface Props {
   movie_id: string;

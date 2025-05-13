@@ -8,12 +8,12 @@ import {
   Spinner,
 } from "@chakra-ui/react";
 import React from "react";
-import CardContainer from "./MovieCardContainer";
-import MovieCardSkeleton from "./MovieCardSkeleton";
-import usePersonCredits from "../hooks/usePersonCredits";
-import MovieCard from "./MovieCard";
-import { consolidateMovieArray } from "../services/consolidate-object-array";
-import { dateStringDifference } from "../services/date-conversion";
+import CardContainer from "../movieSearchPage/MovieCardContainer";
+import MovieCardSkeleton from "../movieSearchPage/MovieCardSkeleton";
+import usePersonCredits from "../../hooks/usePersonCredits";
+import MovieCard from "../movieSearchPage/MovieCard";
+import { consolidateMovieArray } from "../../services/consolidate-object-array";
+import { dateStringDifference } from "../../services/date-conversion";
 
 interface Props {
   person_id: string;

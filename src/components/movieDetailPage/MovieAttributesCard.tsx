@@ -1,9 +1,9 @@
 import { Card, CardBody, SimpleGrid, Text } from "@chakra-ui/react";
-import DefinitionItem from "./DefinitionItem";
-import Movie from "../entities/Movie";
-import minutesToHours from "../services/minutes-to-hours";
+import DefinitionItem from "../DefinitionItem";
+import Movie from "../../entities/Movie";
+import minutesToHours from "../../services/minutes-to-hours";
 import React from "react";
-import formatDate from "../services/date-conversion";
+import formatDate from "../../services/date-conversion";
 
 interface Props {
   movie: Movie;

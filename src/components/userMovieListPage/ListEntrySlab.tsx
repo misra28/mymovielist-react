@@ -11,16 +11,16 @@ import {
   HStack,
 } from "@chakra-ui/react";
 import { Link, useNavigate } from "react-router-dom";
-import ListEntry from "../entities/ListEntry";
-import formatDate from "../services/date-conversion";
+import ListEntry from "../../entities/ListEntry";
+import formatDate from "../../services/date-conversion";
 import axios from "axios";
-import getDjangoEndpoint from "../django-endpoint";
+import getDjangoEndpoint from "../../django-endpoint";
 import {
   placeholderComments,
   placeholderDate,
   placeholderRating,
-} from "../pages/AddListEntryPage";
-import ExpandableText from "./ExpandableText";
+} from "../../pages/AddListEntryPage";
+import ExpandableText from "../ExpandableText";
 
 interface Props {
   listEntry: ListEntry;

@@ -1,8 +1,8 @@
 import { Card, CardBody, Image, SimpleGrid } from "@chakra-ui/react";
-import usePersonImages from "../hooks/usePersonImages";
-import getImage from "../services/backdrop-url";
+import usePersonImages from "../../hooks/usePersonImages";
+import getImage from "../../services/backdrop-url";
 import PersonAttributesCard from "./PersonAttributesCard";
-import usePersonDetails from "../hooks/usePersonDetails";
+import usePersonDetails from "../../hooks/usePersonDetails";
 
 interface Props {
   person_id: string;

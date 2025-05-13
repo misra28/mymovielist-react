@@ -1,6 +1,6 @@
-import useMovieVideos from "../hooks/useMovieVideos";
+import useMovieVideos from "../../hooks/useMovieVideos";
 import { Spinner } from "@chakra-ui/react";
-import Video from "../entities/Video";
+import Video from "../../entities/Video";
 
 interface Props {
   movie_id: string;

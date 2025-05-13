@@ -6,14 +6,14 @@ import {
   Spinner,
   Text,
 } from "@chakra-ui/react";
-import useListEntry from "../hooks/useListEntry";
-import formatDate from "../services/date-conversion";
+import useListEntry from "../../hooks/useListEntry";
+import formatDate from "../../services/date-conversion";
 import { useNavigate } from "react-router-dom";
 import {
   placeholderComments,
   placeholderDate,
   placeholderRating,
-} from "../pages/AddListEntryPage";
+} from "../../pages/AddListEntryPage";
 
 interface Props {
   entry_id: string;

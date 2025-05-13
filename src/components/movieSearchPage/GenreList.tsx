@@ -6,8 +6,8 @@ import {
   SimpleGrid,
   Spinner,
 } from "@chakra-ui/react";
-import useGenres from "../hooks/useGenres";
-import useMovieQueryStore from "../movieStore";
+import useGenres from "../../hooks/useGenres";
+import useMovieQueryStore from "../../movieStore";
 
 const GenreList = () => {
   const { data, isLoading, error } = useGenres();

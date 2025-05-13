@@ -1,18 +1,18 @@
 import { SimpleGrid, Text } from "@chakra-ui/react";
 import React, { useEffect } from "react";
-import useSearchMovies from "../hooks/useSearchMovies";
+import useSearchMovies from "../../hooks/useSearchMovies";
 import MovieCardSkeleton from "./MovieCardSkeleton";
 import CardContainer from "./MovieCardContainer";
 import MovieCard from "./MovieCard";
-import useMovieQueryStore from "../movieStore";
-import useDiscoverMovies from "../hooks/useDiscoverMovies";
+import useMovieQueryStore from "../../movieStore";
+import useDiscoverMovies from "../../hooks/useDiscoverMovies";
 import InfiniteScroll from "react-infinite-scroll-component";
-import useSearchPeople from "../hooks/useSearchPeople";
-import usePopularPeople from "../hooks/usePopularPeople";
-import Movie from "../entities/Movie";
+import useSearchPeople from "../../hooks/useSearchPeople";
+import usePopularPeople from "../../hooks/usePopularPeople";
+import Movie from "../../entities/Movie";
 import PersonCard from "./PersonCard";
-import Person from "../entities/Person";
-import { FetchResponse } from "../services/tmdb-client";
+import Person from "../../entities/Person";
+import { FetchResponse } from "../../services/tmdb-client";
 
 const HomePageGrid = () => {
   const setSearchType = useMovieQueryStore((s) => s.setSearchType);

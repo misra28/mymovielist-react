@@ -1,5 +1,5 @@
 import React from "react";
-import Person from "../entities/Person";
+import Person from "../../entities/Person";
 import {
   Box,
   Card,
@@ -11,7 +11,7 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
-import getImage from "../services/backdrop-url";
+import getImage from "../../services/backdrop-url";
 
 interface Props {
   person: Person;

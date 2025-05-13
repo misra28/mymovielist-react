@@ -12,15 +12,15 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import ListEntry from "../entities/ListEntry";
-import formatDate from "../services/date-conversion";
+import ListEntry from "../../entities/ListEntry";
+import formatDate from "../../services/date-conversion";
 import axios from "axios";
-import getDjangoEndpoint from "../django-endpoint";
+import getDjangoEndpoint from "../../django-endpoint";
 import {
   placeholderComments,
   placeholderDate,
   placeholderRating,
-} from "../pages/AddListEntryPage";
+} from "../../pages/AddListEntryPage";
 
 interface Props {
   listEntry: ListEntry;

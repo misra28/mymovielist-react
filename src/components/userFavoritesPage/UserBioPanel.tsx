@@ -1,5 +1,5 @@
 import React from "react";
-import useBio from "../hooks/useBio";
+import useBio from "../../hooks/useBio";
 import {
   Button,
   Card,
@@ -10,7 +10,7 @@ import {
   Spinner,
   Text,
 } from "@chakra-ui/react";
-import ExpandableText from "./ExpandableText";
+import ExpandableText from "../ExpandableText";
 
 const UserBioPanel = () => {
   const { data, isLoading, error } = useBio();

@@ -10,12 +10,12 @@ import {
 import { useNavigate, useParams } from "react-router-dom";
 import useMovieDetails from "../hooks/useMovieDetails";
 import ExpandableText from "../components/ExpandableText";
-import MoviePostersGrid from "../components/MoviePostersGrid";
-import MovieAttributesCard from "../components/MovieAttributesCard";
-import MovieCreditsCard from "../components/MovieCreditsCard";
-import MovieVideo from "../components/MovieVideo";
+import MoviePostersGrid from "../components/movieDetailPage/MoviePostersGrid";
+import MovieAttributesCard from "../components/movieDetailPage/MovieAttributesCard";
+import MovieCreditsCard from "../components/movieDetailPage/MovieCreditsCard";
+import MovieVideo from "../components/movieDetailPage/MovieVideo";
 import useCredentialsQueryStore from "../credentialsStore";
-import AddListEntryButton from "../components/AddListEntryButton";
+import AddListEntryButton from "../components/movieDetailPage/AddListEntryButton";
 import { useEffect } from "react";
 
 const MovieDetailPage = () => {

@@ -8,7 +8,7 @@ import {
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { BsChevronDown } from "react-icons/bs";
-import useCredentialsQueryStore from "../credentialsStore";
+import useCredentialsQueryStore from "../../credentialsStore";
 
 const SortMovieListSelector = () => {
   const searchTypes = ["movie_title", "date_watched", "rating"];

@@ -2,11 +2,11 @@ import { GridItem, Heading, SimpleGrid, Spinner, Text } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
 import usePersonDetails from "../hooks/usePersonDetails";
 import ExpandableText from "../components/ExpandableText";
-import PersonProfileGrid from "../components/PersonProfileGrid";
-import PersonAttributesCard from "../components/PersonAttributesCard";
-import PersonCreditsGrid from "../components/PersonCreditsGrid";
-import PersonKnownFor from "../components/PersonKnownFor";
-import PersonListEntryGrid from "../components/PersonListEntryGrid";
+import PersonProfileGrid from "../components/personDetailPage/PersonProfileGrid";
+import PersonAttributesCard from "../components/personDetailPage/PersonAttributesCard";
+import PersonCreditsGrid from "../components/personDetailPage/PersonCreditsGrid";
+import PersonKnownFor from "../components/personDetailPage/PersonKnownFor";
+import PersonListEntryGrid from "../components/personDetailPage/PersonListEntryGrid";
 
 const PersonDetailPage = () => {
   const { person_id } = useParams();

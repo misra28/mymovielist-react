@@ -8,8 +8,8 @@ import {
 import { useRef } from "react";
 import { BsSearch } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
-import useMovieQueryStore from "../movieStore";
-import ResetButton from "./ResetButton";
+import useMovieQueryStore from "../../movieStore";
+import ResetButton from "../ResetButton";
 import TypeOfSearchSelector from "./TypeOfSearchSelector";
 
 interface Props {

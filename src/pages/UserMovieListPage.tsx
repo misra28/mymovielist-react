@@ -14,16 +14,16 @@ import {
 import React, { useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useNavigate } from "react-router-dom";
-import ListEntryCard from "../components/ListEntryCard";
-import CardContainer from "../components/MovieCardContainer";
-import MovieCardSkeleton from "../components/MovieCardSkeleton";
+import ListEntryCard from "../components/userMovieListPage/ListEntryCard";
+import CardContainer from "../components/movieSearchPage/MovieCardContainer";
+import MovieCardSkeleton from "../components/movieSearchPage/MovieCardSkeleton";
 import useCredentialsQueryStore from "../credentialsStore";
 import useGetMovieList from "../hooks/useGetMovieList";
 import getUserInfo from "../services/get-user-info";
 import authService from "../services/auth-service";
-import SortMovieListSelector from "../components/SortMovieListSelector";
-import ListEntrySlab from "../components/ListEntrySlab";
-import UserBioPanel from "../components/UserBioPanel";
+import SortMovieListSelector from "../components/userMovieListPage/SortMovieListSelector";
+import ListEntrySlab from "../components/userMovieListPage/ListEntrySlab";
+import UserBioPanel from "../components/userFavoritesPage/UserBioPanel";
 
 const UserMovieListPage = () => {
   const navigate = useNavigate();
@@ -77,6 +77,13 @@ const UserMovieListPage = () => {
           <Heading marginBottom={"1rem"}>{`${username}'s MovieList`}</Heading>
         )}
         <Button
+          width={{ base: "100%", sm: "8rem" }}
+          onClick={() => navigate(`/user/favorites`)}
+          marginBottom={"1rem"}
+        >
+          View Favorites
+        </Button>
+        <Button
           width={{ base: "100%", sm: "8rem" }} // Full width on mobile
           marginBottom={"1rem"}
           onClick={() => {
@@ -88,7 +95,6 @@ const UserMovieListPage = () => {
         >
           Log Out
         </Button>
-        <UserBioPanel />
         {/* <Button
           color={"red"}
           marginBottom={"1rem"}

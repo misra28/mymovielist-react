@@ -1,6 +1,6 @@
 import React from "react";
 import RCDPanel from "./RCDPanel";
-import useEntryIDs from "../hooks/useEntryIDs";
+import useEntryIDs from "../../hooks/useEntryIDs";
 import { Button } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 
@@ -13,7 +13,7 @@ const AddListEntryButton = ({ movie_id }: Props) => {
   const entryIDs = useEntryIDs().data;
 
   if (!entryIDs) return null;
-  console.log(entryIDs);
+  // console.log(entryIDs);
 
   let movieEntryID = "";
   let alreadyInList = false;

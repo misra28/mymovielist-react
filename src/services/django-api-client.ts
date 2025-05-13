@@ -26,6 +26,19 @@ export interface FetchLoginTokenResponse {
     access: string;
 }
 
+export interface FetchUserFavPerson {
+    id: number;
+    person: string;
+    person_name: string;
+    profile_url: string | null;
+}
+
+export interface FetchFavFilmsOfPerson {
+    id: number;
+    listEntry: number;
+    favPerson: number;
+}
+
 class DjangoClient {
     endpoint: string;
     constructor(endpoint: string) {

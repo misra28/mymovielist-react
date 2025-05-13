@@ -1,7 +1,7 @@
 import { Card, CardBody, Heading, Image, Text } from "@chakra-ui/react";
-import Movie from "../entities/Movie";
-import getImage from "../services/backdrop-url";
-import getCroppedImageUrl from "../services/image-url";
+import Movie from "../../entities/Movie";
+import getImage from "../../services/backdrop-url";
+import getCroppedImageUrl from "../../services/image-url";
 import { Link } from "react-router-dom";
 
 interface Props {

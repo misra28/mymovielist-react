@@ -8,10 +8,10 @@ import {
   Show,
   SimpleGrid,
 } from "@chakra-ui/react";
-import HomePageGrid from "../components/HomePageGrid";
-import MovieFilter from "../components/MovieFilter";
-import HomePageHeader from "../components/HomePageHeader";
-import GenreList from "../components/GenreList";
+import HomePageGrid from "../components/movieSearchPage/HomePageGrid";
+import MovieFilter from "../components/movieSearchPage/MovieFilter";
+import HomePageHeader from "../components/movieSearchPage/HomePageHeader";
+import GenreList from "../components/movieSearchPage/GenreList";
 
 const HomePage = () => {
   return (

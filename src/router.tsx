@@ -9,6 +9,7 @@ import UserLoginPage from "./pages/UserLoginPage";
 import UpdateListEntryPage from "./pages/UpdateListEntryPage";
 import AddListEntryPage from "./pages/AddListEntryPage";
 import UserRegisterPage from "./pages/UserRegisterPage";
+import UserFavoritesPage from "./pages/UserFavoritesPage";
 
 const router = createBrowserRouter([
   {
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
           {
             path: "list",
             element: <UserMovieListPage />,
+          },
+          {
+            path: "favorites",
+            element: <UserFavoritesPage />,
           },
           {
             path: ":entry_id",

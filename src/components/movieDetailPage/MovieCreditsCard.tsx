@@ -1,4 +1,4 @@
-import useMovieCredits from "../hooks/useMovieCredits";
+import useMovieCredits from "../../hooks/useMovieCredits";
 import BuildMovieCredits from "./BuildMovieCredits";
 
 interface Props {

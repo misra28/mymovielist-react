@@ -5,14 +5,14 @@ import {
   Heading,
   SimpleGrid,
 } from "@chakra-ui/react";
-import usePersonCredits from "../hooks/usePersonCredits";
-import CardContainer from "./MovieCardContainer";
-import MovieCard from "./MovieCard";
-import MovieCardSkeleton from "./MovieCardSkeleton";
+import usePersonCredits from "../../hooks/usePersonCredits";
+import CardContainer from "../movieSearchPage/MovieCardContainer";
+import MovieCard from "../movieSearchPage/MovieCard";
+import MovieCardSkeleton from "../movieSearchPage/MovieCardSkeleton";
 import React from "react";
 import consolidateArray, {
   consolidateMovieArray,
-} from "../services/consolidate-object-array";
+} from "../../services/consolidate-object-array";
 
 interface Props {
   person_id: string;

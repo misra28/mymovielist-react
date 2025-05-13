@@ -1,8 +1,8 @@
 import { Card, CardBody, SimpleGrid, Text } from "@chakra-ui/react";
 import React from "react";
-import Person from "../entities/Person";
-import formatDate from "../services/date-conversion";
-import DefinitionItem from "./DefinitionItem";
+import Person from "../../entities/Person";
+import formatDate from "../../services/date-conversion";
+import DefinitionItem from "../DefinitionItem";
 
 interface Props {
   person: Person;
@@ -47,7 +47,7 @@ const PersonAttributesCard = ({ person }: Props) => {
                   person.also_known_as.length >= 1 &&
                   person.also_known_as
                     .slice(0, 3)
-                    .map((alias) => <Text>{alias}</Text>)}
+                    .map((alias) => <Text key={alias}>{alias}</Text>)}
               </React.Fragment>
             </DefinitionItem>
           )}

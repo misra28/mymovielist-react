@@ -1,9 +1,9 @@
 import { Button, Heading, HStack, Image, Text } from "@chakra-ui/react";
-import ColorModeSwitch from "./ColorModeSwitch";
+import ColorModeSwitch from "../ColorModeSwitch";
 import { Link } from "react-router-dom";
 import SearchInput from "./SearchInput";
-import tmdb from "../assets/tmdb.svg";
-import useCredentialsQueryStore from "../credentialsStore";
+import tmdb from "../../assets/tmdb.svg";
+import useCredentialsQueryStore from "../../credentialsStore";
 
 const NavBar = () => {
   const username = useCredentialsQueryStore((s) => s.credentialsQuery.username);
