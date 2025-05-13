@@ -48,10 +48,11 @@ const AddFavFilmOfPersonButton = ({ listEntry_id, favPerson_id }: Props) => {
           params: { format: "json" },
         })
         .then((res) => res.data);
+      window.location.reload();
       // navigate("/user/favorites");
     } catch (e) {
       if (axios.isAxiosError(e)) {
-        console.error(e.response?.data); // See what DRF returned
+        console.error(e.response?.data);
       }
       alert(`Failed to add the entry to your favorites.`);
     }

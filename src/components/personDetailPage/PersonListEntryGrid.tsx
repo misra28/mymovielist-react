@@ -9,7 +9,7 @@ import {
   Button,
   HStack,
 } from "@chakra-ui/react";
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import CardContainer from "../movieSearchPage/MovieCardContainer";
 import MovieCardSkeleton from "../movieSearchPage/MovieCardSkeleton";
 import usePersonCredits from "../../hooks/usePersonCredits";
@@ -41,19 +41,16 @@ const PersonListEntryGrid = ({ person_id }: Props) => {
   const isAuthenticated = !!localStorage.getItem("access_token");
   const [isExpanded, setIsExpanded] = useState(false);
   const [sortByRating, setSortByRating] = useState(true);
+  const isFavPerson = useMemo(
+    () => !!favPerson && favPerson.length > 0,
+    [favPerson]
+  );
+
+  const hasFavFilms = useMemo(() => !!favFilmsOfPerson, [favFilmsOfPerson]);
 
   if (!credits || credits.length == 0 || !isAuthenticated) return null;
 
   console.log(favPerson);
-  let isFavPerson = true;
-  if (favPerson === undefined || favPerson.length == 0) {
-    isFavPerson = false;
-  }
-
-  let hasFavFilms = true;
-  if (favFilmsOfPerson === undefined) {
-    hasFavFilms = false;
-  }
 
   if (sortByRating) credits.sort((a, b) => b.rating - a.rating);
   else

@@ -48,6 +48,7 @@ const AddFavPersonButton = ({ person_id }: Props) => {
           params: { format: "json" },
         })
         .then((res) => res.data);
+      window.location.reload();
       // navigate("/user/favorites");
     } catch (e) {
       if (axios.isAxiosError(e)) {
