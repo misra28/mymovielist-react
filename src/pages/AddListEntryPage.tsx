@@ -7,6 +7,7 @@ import {
   Button,
   Spinner,
   Textarea,
+  Select,
 } from "@chakra-ui/react";
 import React, { useRef } from "react";
 import { useNavigate, useParams } from "react-router-dom";
@@ -36,6 +37,7 @@ const AddListEntryPage = () => {
   const ratingRef = useRef<HTMLInputElement>(null);
   const dateWatchedRef = useRef<HTMLInputElement>(null);
   const commentsRef = useRef<HTMLTextAreaElement>(null);
+  const simplifiedRatingRef = useRef<HTMLSelectElement>(null);
   const navigate = useNavigate();
   const userId = useCredentialsQueryStore((s) => s.credentialsQuery.userId);
   const accessToken = localStorage.getItem("access_token")!;
@@ -50,6 +52,7 @@ const AddListEntryPage = () => {
       rating: parseFloat(ratingRef.current?.value || placeholderRating),
       date_watched: dateWatchedRef.current?.value || placeholderDate,
       comments: commentsRef.current?.value || placeholderComments,
+      simplified_rating: simplifiedRatingRef.current?.value || 3,
     };
     let response: ListEntry;
     const instance = axios.create({
@@ -87,6 +90,29 @@ const AddListEntryPage = () => {
             placeholder={`Rating`}
             variant="filled"
           />
+        </InputGroup>
+        <InputGroup width={"53vw"} marginBottom={"1vw"} alignItems="center">
+          <FormLabel
+            marginTop={"0.4rem"}
+            fontSize={"1.2rem"}
+            marginRight="1rem"
+          >
+            Mood Meter:
+          </FormLabel>
+
+          <Select
+            borderRadius={20}
+            variant="filled"
+            // defaultValue={data?.simplified_rating || 3}
+            ref={simplifiedRatingRef}
+            placeholder="Select rating"
+          >
+            <option value="1">😞 — Bad</option>
+            <option value="2">😐 — Below Average</option>
+            <option value="3">🙂 — Decent</option>
+            <option value="4">😊 — Great</option>
+            <option value="5">😁 — Amazing</option>
+          </Select>
         </InputGroup>
         <InputGroup width={"53vw"} marginBottom={"1vw"}>
           <FormLabel marginTop={"0.4rem"} fontSize={"1.2rem"}>

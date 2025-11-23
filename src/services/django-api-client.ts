@@ -31,6 +31,7 @@ export interface FetchUserFavPerson {
     person: string;
     person_name: string;
     profile_url: string | null;
+    fav_film_count: number;
 }
 
 export interface FetchFavFilmsOfPerson {

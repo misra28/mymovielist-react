@@ -21,6 +21,7 @@ import {
   placeholderDate,
   placeholderRating,
 } from "../../pages/AddListEntryPage";
+import { MoodMeter } from "./MoodMeter";
 
 interface Props {
   listEntry: ListEntry;
@@ -58,17 +59,24 @@ const ListEntryCard = ({ listEntry }: Props) => {
             borderRadius="md"
           />
           <Box marginLeft={{ base: "0", md: "1rem" }}>
-            {listEntry.rating &&
+            {/* {listEntry.simplified_rating && (
+              <Text fontSize="1.2rem" fontWeight="bold">
+                {`Rating: ${listEntry.simplified_rating}`}
+              </Text>
+            )} */}
+            <MoodMeter simplified_rating={listEntry.simplified_rating} />
+
+            {/* {listEntry.rating &&
               listEntry.rating !== parseInt(placeholderRating) && (
                 <Text fontSize="1.2rem" fontWeight="bold">
                   {`Rating: ${listEntry.rating}`}
                 </Text>
-              )}
+              )} */}
 
             {listEntry.date_watched &&
               listEntry.date_watched !== placeholderDate && (
                 <>
-                  <Text fontSize="1.2rem" fontWeight="bold">
+                  <Text fontSize="1.2rem" fontWeight="bold" marginTop="0.5rem">
                     Watched on:
                   </Text>
                   <Text fontSize="1rem">
@@ -80,10 +88,22 @@ const ListEntryCard = ({ listEntry }: Props) => {
             {listEntry.comments &&
               listEntry.comments !== placeholderComments && (
                 <>
-                  <Text fontSize="1.2rem" fontWeight="bold">
+                  <Text fontSize="1.2rem" fontWeight="bold" marginTop="1rem">
                     Comments:
                   </Text>
-                  <Text fontSize="1rem">{listEntry.comments}</Text>
+
+                  <Box
+                    maxH="10.5rem" // set the visible height
+                    overflowY="auto" // enable vertical scrolling
+                    p={2}
+                    borderRadius="md"
+                    marginTop="0.25rem"
+                    background={"#202020"}
+                  >
+                    <Text fontSize="1rem" whiteSpace="pre-wrap">
+                      {listEntry.comments}
+                    </Text>
+                  </Box>
                 </>
               )}
           </Box>

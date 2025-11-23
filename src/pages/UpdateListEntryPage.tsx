@@ -7,6 +7,7 @@ import {
   FormLabel,
   Spinner,
   Textarea,
+  Select,
 } from "@chakra-ui/react";
 import React, { useRef } from "react";
 import { useNavigate, useParams } from "react-router-dom";
@@ -27,6 +28,7 @@ const UpdateListEntryPage = () => {
   const ratingRef = useRef<HTMLInputElement>(null);
   const dateWatchedRef = useRef<HTMLInputElement>(null);
   const commentsRef = useRef<HTMLTextAreaElement>(null);
+  const simplifiedRatingRef = useRef<HTMLSelectElement>(null);
 
   const navigate = useNavigate();
   const accessToken = localStorage.getItem("access_token")!;
@@ -46,9 +48,12 @@ const UpdateListEntryPage = () => {
       movie_title: data?.movie_title!,
       poster_url: data?.poster_url!,
       user: data?.user!,
-      rating: parseFloat(ratingRef.current?.value! || placeholderRating),
+      rating:
+        data?.rating ||
+        parseFloat(ratingRef.current?.value! || placeholderRating),
       date_watched: dateWatchedRef.current?.value || placeholderDate,
       comments: commentsRef.current?.value || placeholderComments,
+      simplified_rating: simplifiedRatingRef.current?.value || 3,
     } as ListEntry;
     console.log(listEntry);
     let updatedData: ListEntry;
@@ -82,7 +87,30 @@ const UpdateListEntryPage = () => {
         marginBottom={"2vw"}
       >{`Update Information For '${data?.movie_title}'`}</Heading>
       <form onSubmit={submitUpdatedInfo}>
-        <InputGroup width={"53vw"} marginBottom={"1vw"}>
+        <InputGroup width={"53vw"} marginBottom={"1vw"} alignItems="center">
+          <FormLabel
+            marginTop={"0.4rem"}
+            fontSize={"1.2rem"}
+            marginRight="1rem"
+          >
+            Mood Meter:
+          </FormLabel>
+
+          <Select
+            borderRadius={20}
+            variant="filled"
+            defaultValue={data?.simplified_rating?.toString()}
+            ref={simplifiedRatingRef}
+            placeholder="Select rating"
+          >
+            <option value="1">😞 — Bad</option>
+            <option value="2">😐 — Below Average</option>
+            <option value="3">🙂 — Decent</option>
+            <option value="4">😊 — Great</option>
+            <option value="5">😁 — Amazing</option>
+          </Select>
+        </InputGroup>
+        {/* <InputGroup width={"53vw"} marginBottom={"1vw"}>
           <FormLabel marginTop={"0.4rem"} fontSize={"1.2rem"}>
             Rating:{" "}
           </FormLabel>
@@ -95,7 +123,7 @@ const UpdateListEntryPage = () => {
               data?.rating.toString() != placeholderRating ? data?.rating : ""
             }
           />
-        </InputGroup>
+        </InputGroup> */}
         <InputGroup width={"53vw"} marginBottom={"1vw"}>
           <FormLabel marginTop={"0.4rem"} fontSize={"1.2rem"}>
             Date Watched:{" "}

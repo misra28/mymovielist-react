@@ -8,6 +8,7 @@ interface CredentialsQuery {
     listViewType?: boolean;
     searchType?: string;
     isAscending?: boolean;
+    favoritesSortType?: string;
 }
 
 interface CredentialsQueryStore {
@@ -19,6 +20,7 @@ interface CredentialsQueryStore {
     setListViewType: (listViewType?: boolean) => void;
     setSearchType: (searchType?: string) => void;
     setIsAscending: (isAscending?: boolean) => void;
+    setFavoritesSortType: (favoritesSortType?: string) => void;
 }
 
 const useCredentialsQueryStore = create<CredentialsQueryStore>( set => ({
@@ -30,6 +32,7 @@ const useCredentialsQueryStore = create<CredentialsQueryStore>( set => ({
     setListViewType: (listViewType) => set((store) => ({credentialsQuery: {...store.credentialsQuery, listViewType}})),
     setSearchType: (searchType) => set((store) => ({credentialsQuery: {...store.credentialsQuery, searchType}})),
     setIsAscending: (isAscending) => set((store) => ({credentialsQuery: {...store.credentialsQuery, isAscending}})),
+    setFavoritesSortType: (favoritesSortType) => set((store) => ({credentialsQuery: {...store.credentialsQuery, favoritesSortType}})),
 }))
 
 export default useCredentialsQueryStore;

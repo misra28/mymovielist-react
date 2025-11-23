@@ -11,7 +11,12 @@ import { BsChevronDown } from "react-icons/bs";
 import useCredentialsQueryStore from "../../credentialsStore";
 
 const SortMovieListSelector = () => {
-  const searchTypes = ["movie_title", "date_watched", "rating"];
+  const searchTypes = [
+    "movie_title",
+    "date_watched",
+    "rating",
+    "simplified_rating",
+  ];
   const dirs = ["Ascending", "Descending"];
   const searchType = useCredentialsQueryStore(
     (s) => s.credentialsQuery.searchType
@@ -45,6 +50,8 @@ const SortMovieListSelector = () => {
         >
           {searchType === "rating"
             ? "Rating"
+            : searchType === "simplified_rating"
+            ? "Mood Meter"
             : searchType === "movie_title"
             ? "Title"
             : "Date Watched"}
@@ -59,6 +66,8 @@ const SortMovieListSelector = () => {
             >
               {getSearchType === "rating"
                 ? "Rating"
+                : getSearchType === "simplified_rating"
+                ? "Mood Meter"
                 : getSearchType === "movie_title"
                 ? "Title"
                 : "Date Watched"}

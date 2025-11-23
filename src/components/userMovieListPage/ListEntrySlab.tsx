@@ -21,6 +21,7 @@ import {
   placeholderRating,
 } from "../../pages/AddListEntryPage";
 import ExpandableText from "../ExpandableText";
+import { MoodMeter } from "./MoodMeter";
 
 interface Props {
   listEntry: ListEntry;
@@ -93,20 +94,27 @@ const ListEntrySlab = ({ listEntry, consolidated }: Props) => {
               width="100%"
             >
               {/* Rating */}
-              {listEntry.rating &&
+              {/* {listEntry.rating &&
               listEntry.rating !== parseInt(placeholderRating) ? (
                 <Text fontSize="1rem" fontWeight="bold">
                   Rating: {listEntry.rating}
                 </Text>
               ) : (
                 <Text></Text>
-              )}
+              )} */}
+
+              {/* Mood Meter */}
+              <MoodMeter
+                simplified_rating={listEntry.simplified_rating}
+                width={30}
+                consolidated={true}
+              />
 
               {/* Watched Date */}
               {listEntry.date_watched &&
               listEntry.date_watched !== placeholderDate ? (
                 <Text fontSize="1rem" fontWeight="bold">
-                  Watched on: {formatDate(listEntry.date_watched)}
+                  Watched on {formatDate(listEntry.date_watched)}
                 </Text>
               ) : (
                 <Text></Text>

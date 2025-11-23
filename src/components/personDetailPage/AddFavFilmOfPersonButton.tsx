@@ -63,7 +63,7 @@ const AddFavFilmOfPersonButton = ({ listEntry_id, favPerson_id }: Props) => {
       <HStack>
         <>
           <BsStar />
-          <Text>{`Add Film to Favorite Performances/Roles`}</Text>
+          <Text>{`Add Film to Favorites`}</Text>
         </>
       </HStack>
     </Button>

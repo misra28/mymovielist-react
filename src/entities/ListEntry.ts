@@ -4,6 +4,7 @@ export default interface ListEntry {
     movie_id: string;
     movie_title: string;
     rating: number;
+    simplified_rating: number;
     date_watched: string;
     comments?: string;
     poster_url: string;

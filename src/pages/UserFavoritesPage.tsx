@@ -37,8 +37,11 @@ const UserFavoritesPage = () => {
   const user = getUserInfo();
   if (!user) return <Spinner />;
 
-  const listSortType = useCredentialsQueryStore(
-    (s) => s.credentialsQuery.listSortType
+  const favoritesSortType = useCredentialsQueryStore(
+    (s) => s.credentialsQuery.favoritesSortType
+  );
+  const setFavoritesSortType = useCredentialsQueryStore(
+    (s) => s.setFavoritesSortType
   );
 
   const skeletons = [1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -61,7 +64,12 @@ const UserFavoritesPage = () => {
       </Card>
     );
 
+  // Sort list of favorite people
   favPeople.sort((a, b) => {
+    if (!favoritesSortType || favoritesSortType == "fav_film_count") {
+      if (a.fav_film_count > b.fav_film_count) return -1;
+      else return 1;
+    }
     if (b.person_name > a.person_name) return -1;
     else return 1;
   });
@@ -106,6 +114,24 @@ const UserFavoritesPage = () => {
         <Card width={{ base: "90%", md: "80%", lg: "70%" }}>
           <CardHeader>
             <Heading>Favorite Actors/Filmmakers</Heading>
+            <HStack>
+              <Button
+                marginTop={"1rem"}
+                background={"#121212"}
+                onClick={() => {
+                  if (!favoritesSortType || favoritesSortType == "name") {
+                    setFavoritesSortType("fav_film_count");
+                  } else {
+                    setFavoritesSortType("name");
+                  }
+                }}
+              >
+                Sorting by{" "}
+                {!favoritesSortType || favoritesSortType === "fav_film_count"
+                  ? "Film Count"
+                  : "Name"}
+              </Button>
+            </HStack>
           </CardHeader>
           <CardBody>
             <SimpleGrid
