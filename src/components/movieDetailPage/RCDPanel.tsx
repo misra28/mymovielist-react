@@ -14,6 +14,7 @@ import {
   placeholderDate,
   placeholderRating,
 } from "../../pages/AddListEntryPage";
+import { MoodMeter } from "../userMovieListPage/MoodMeter";
 
 interface Props {
   entry_id: string;
@@ -45,9 +46,13 @@ const RCDPanel = ({ entry_id }: Props) => {
       <UpdateButton entry_id={entry_id} />
       <Card marginBottom={"1rem"}>
         <CardBody>
-          {placeholderRating != data?.rating.toString() && (
+          {/* {placeholderRating != data?.rating.toString() && (
             <Text>Rating: {data?.rating}</Text>
-          )}
+          )} */}
+          <MoodMeter
+            simplified_rating={data?.simplified_rating!}
+            consolidated={true}
+          />
           {placeholderDate != data?.date_watched && (
             <Text>Date Watched: {formatDate(data!.date_watched)}</Text>
           )}

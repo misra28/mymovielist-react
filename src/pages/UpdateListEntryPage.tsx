@@ -103,11 +103,11 @@ const UpdateListEntryPage = () => {
             ref={simplifiedRatingRef}
             placeholder="Select rating"
           >
-            <option value="1">😞 — Bad</option>
-            <option value="2">😐 — Below Average</option>
-            <option value="3">🙂 — Decent</option>
-            <option value="4">😊 — Great</option>
-            <option value="5">😁 — Amazing</option>
+            <option value="1">😞</option>
+            <option value="2">😐</option>
+            <option value="3">🙂</option>
+            <option value="4">😊</option>
+            <option value="5">😁</option>
           </Select>
         </InputGroup>
         {/* <InputGroup width={"53vw"} marginBottom={"1vw"}>

@@ -6,7 +6,6 @@ import {
   cilSmile,
   cilMoodBad,
   cilMoodGood,
-  cilMoodVeryBad,
   cilMoodVeryGood,
 } from "@coreui/icons";
 
@@ -23,7 +22,7 @@ export const MoodMeter = ({
 }: Props) => {
   let icons = [cilMoodBad, cilMeh, cilSmile, cilMoodGood, cilMoodVeryGood];
 
-  const activeColors = ["red", "orangered", "gold", "limegreen", "greenyellow"];
+  const activeColors = ["red", "yellow", "#00eeffff", "#09ff00ff", "purple"];
 
   if (consolidated) {
     return (

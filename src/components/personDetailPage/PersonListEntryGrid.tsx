@@ -52,7 +52,8 @@ const PersonListEntryGrid = ({ person_id }: Props) => {
 
   console.log(favPerson);
 
-  if (sortByRating) credits.sort((a, b) => b.rating - a.rating);
+  if (sortByRating)
+    credits.sort((a, b) => b.simplified_rating - a.simplified_rating);
   else
     credits.sort((a, b) =>
       dateStringDifference(b.date_watched, a.date_watched)
@@ -79,7 +80,7 @@ const PersonListEntryGrid = ({ person_id }: Props) => {
           marginTop={5}
           onClick={() => setSortByRating(!sortByRating)}
         >
-          {sortByRating ? "Sort by Date Watched" : "Sort by Rating"}
+          {sortByRating ? "Sorted by Rating" : "Sorted by Date Watched"}
         </Button>
         {creditLength > 3 && (
           <Button

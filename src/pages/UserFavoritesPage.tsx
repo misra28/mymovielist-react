@@ -90,25 +90,27 @@ const UserFavoritesPage = () => {
             marginBottom={"1rem"}
           >{`${username}'s Favorites Page`}</Heading>
         )}
-        <Button
-          width={{ base: "100%", sm: "8rem" }}
-          onClick={() => navigate(`/user/list`)}
-          marginBottom={"1rem"}
-        >
-          View MovieList
-        </Button>
-        <Button
-          width={{ base: "100%", sm: "8rem" }} // Full width on mobile
-          marginBottom={"1rem"}
-          onClick={() => {
-            authService.logout();
-            setUsername();
-            setUserId();
-            navigate(`/movies`);
-          }}
-        >
-          Log Out
-        </Button>
+        <HStack>
+          <Button
+            width={{ base: "100%", sm: "8rem" }}
+            onClick={() => navigate(`/user/list`)}
+            marginBottom={"1rem"}
+          >
+            View MovieList
+          </Button>
+          <Button
+            width={{ base: "100%", sm: "8rem" }} // Full width on mobile
+            marginBottom={"1rem"}
+            onClick={() => {
+              authService.logout();
+              setUsername();
+              setUserId();
+              navigate(`/movies`);
+            }}
+          >
+            Log Out
+          </Button>
+        </HStack>
         {/* <UserBioPanel /> */}
 
         <Card width={{ base: "90%", md: "80%", lg: "70%" }}>

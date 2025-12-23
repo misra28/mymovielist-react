@@ -80,7 +80,7 @@ const AddListEntryPage = () => {
         marginBottom={"2vw"}
       >{`Add '${data?.title}' to your MovieList`}</Heading>
       <form onSubmit={submitAddedEntry}>
-        <InputGroup width={"53vw"} marginBottom={"1vw"}>
+        {/* <InputGroup width={"53vw"} marginBottom={"1vw"}>
           <FormLabel marginTop={"0.4rem"} fontSize={"1.2rem"}>
             Rating:{" "}
           </FormLabel>
@@ -90,7 +90,7 @@ const AddListEntryPage = () => {
             placeholder={`Rating`}
             variant="filled"
           />
-        </InputGroup>
+        </InputGroup> */}
         <InputGroup width={"53vw"} marginBottom={"1vw"} alignItems="center">
           <FormLabel
             marginTop={"0.4rem"}
@@ -107,11 +107,11 @@ const AddListEntryPage = () => {
             ref={simplifiedRatingRef}
             placeholder="Select rating"
           >
-            <option value="1">😞 — Bad</option>
-            <option value="2">😐 — Below Average</option>
-            <option value="3">🙂 — Decent</option>
-            <option value="4">😊 — Great</option>
-            <option value="5">😁 — Amazing</option>
+            <option value="1">😞</option>
+            <option value="2">😐</option>
+            <option value="3">🙂</option>
+            <option value="4">😊</option>
+            <option value="5">😁</option>
           </Select>
         </InputGroup>
         <InputGroup width={"53vw"} marginBottom={"1vw"}>

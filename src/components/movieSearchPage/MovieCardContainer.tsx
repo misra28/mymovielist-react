@@ -8,10 +8,10 @@ interface Props {
 const CardContainer = ({ children }: Props) => {
   return (
     <Box
-      _hover={{
-        transform: "scale(1.02)",
-        transition: "transform .12s ease-in",
-      }}
+      // _hover={{
+      //   transform: "scale(1.02)",
+      //   transition: "transform .12s ease-in",
+      // }}
       width="100%"
       borderRadius="10px"
       overflow="hidden"

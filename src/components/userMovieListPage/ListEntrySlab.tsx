@@ -106,7 +106,7 @@ const ListEntrySlab = ({ listEntry, consolidated }: Props) => {
               {/* Mood Meter */}
               <MoodMeter
                 simplified_rating={listEntry.simplified_rating}
-                width={30}
+                width={40}
                 consolidated={true}
               />
 

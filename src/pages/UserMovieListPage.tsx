@@ -3,6 +3,7 @@ import {
   Button,
   Card,
   CardBody,
+  CardHeader,
   Container,
   Flex,
   Grid,
@@ -10,6 +11,7 @@ import {
   HStack,
   SimpleGrid,
   Spinner,
+  Text,
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -24,6 +26,7 @@ import authService from "../services/auth-service";
 import SortMovieListSelector from "../components/userMovieListPage/SortMovieListSelector";
 import ListEntrySlab from "../components/userMovieListPage/ListEntrySlab";
 import UserBioPanel from "../components/userFavoritesPage/UserBioPanel";
+import useEntryIDs from "../hooks/useEntryIDs";
 
 const UserMovieListPage = () => {
   const navigate = useNavigate();
@@ -58,6 +61,12 @@ const UserMovieListPage = () => {
   let colCount = 0;
   if (listViewExpanded) colCount = 1;
 
+  const entryIDs = useEntryIDs().data;
+  let entryCount = 0;
+  if (entryIDs) {
+    entryCount = entryIDs.length;
+  }
+
   // useEffect(() => {
   //   setListSortType(listSortType);
   // }, [listSortType, setListSortType]);
@@ -76,39 +85,47 @@ const UserMovieListPage = () => {
         {username && (
           <Heading marginBottom={"1rem"}>{`${username}'s MovieList`}</Heading>
         )}
-        <Button
-          width={{ base: "100%", sm: "8rem" }}
-          onClick={() => navigate(`/user/favorites`)}
-          marginBottom={"1rem"}
-        >
-          View Favorites
-        </Button>
-        <Button
-          width={{ base: "100%", sm: "8rem" }} // Full width on mobile
-          marginBottom={"1rem"}
-          onClick={() => {
-            authService.logout();
-            setUsername();
-            setUserId();
-            navigate(`/movies`);
-          }}
-        >
-          Log Out
-        </Button>
-        {/* <Button
-          color={"red"}
-          marginBottom={"1rem"}
-          onClick={() => {
-            authService.deleteAccount();
-            setUsername();
-            setUserId();
-            navigate(`/movies`);
-          }}
-        >
-          Delete Account
-        </Button> */}
-
+        <HStack>
+          <Button
+            width={{ base: "100%", sm: "8rem" }}
+            onClick={() => navigate(`/user/favorites`)}
+            marginBottom={"1rem"}
+          >
+            View Favorites
+          </Button>
+          <Button
+            width={{ base: "100%", sm: "8rem" }} // Full width on mobile
+            marginBottom={"1rem"}
+            onClick={() => {
+              authService.logout();
+              setUsername();
+              setUserId();
+              navigate(`/movies`);
+            }}
+          >
+            Log Out
+          </Button>
+          {/* <Button
+            color={"red"}
+            marginBottom={"1rem"}
+            onClick={() => {
+              authService.deleteAccount();
+              setUsername();
+              setUserId();
+              navigate(`/movies`);
+            }}
+          >
+            Delete Account
+          </Button> */}
+        </HStack>
         <Card width={{ base: "90%", md: "80%", lg: "70%" }}>
+          <CardHeader paddingBottom={0}>
+            {entryCount && (
+              <Heading textAlign={"left"} fontSize={"1.5rem"}>
+                Film Count: {entryCount}
+              </Heading>
+            )}
+          </CardHeader>
           <CardBody>
             <HStack flexDirection={{ base: "column", md: "row" }} spacing={2}>
               <SortMovieListSelector />
